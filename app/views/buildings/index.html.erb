@@ -1,0 +1,22 @@
+<h1>Listing buildings</h1>
+ 
+<%= link_to 'New buidling', new_building_path %>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>地址</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @buildings.each do |building| %>
+    <tr>
+      <td><%= building.name %></td>
+      <td><%= building.socket_address %></td>
+      <td><%= link_to 'Show', building_path(building) %></td>
+      <td><%= link_to 'Edit', edit_building_path(building) %></td>
+      <td><%= link_to 'Destroy', building_path(building),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
