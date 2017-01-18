@@ -1,23 +1,24 @@
 class BuildingsController < ApplicationController
+  http_basic_authenticate_with name: "ting", password: "111111", except: [:index, :show]
+
   def index
     @buildings = Building.all
-    end
+  end
 
   def show
     @building = Building.find(params[:id])
-    end
+  end
 
   def new
     @building = Building.new
-    end
+  end
 
   def edit
     @building = Building.find(params[:id])
-    end
+  end
 
   def create
     @building = Building.new(building_params)
-
     if @building.save
       redirect_to @building
     else
@@ -27,18 +28,16 @@ class BuildingsController < ApplicationController
 
   def update
     @building = Building.find(params[:id])
-
     if @building.update(building_params)
       redirect_to @building
     else
       render 'edit'
     end
-end
+  end
 
   def destroy
     @building = Building.find(params[:id])
     @building.destroy
-
     redirect_to buildings_path
   end
 

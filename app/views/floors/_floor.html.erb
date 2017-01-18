@@ -1,0 +1,15 @@
+<p>
+  <strong>Name:</strong>
+  <%= floor.name %>
+</p>
+
+<p>
+  <strong>Image Name:</strong>
+  <%= floor.image_name %>
+</p>
+
+<p>
+<%= link_to 'Destroy Floor', [floor.building, floor],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+</p>

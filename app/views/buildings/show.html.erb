@@ -8,6 +8,11 @@
   <strong>socket_address:</strong>
   <%= @building.socket_address %>
 </p>
-<%= link_to 'Edit', edit_building_path(@building) %> 
-<%= link_to 'Back', buildings_path %>
-  
+
+<h2>Floors:</h2>
+<%= render @building.floors %>
+
+<h2>Add a floor:</h2>
+<%= render 'floors/form' %>
+
+<%= link_to 'Edit', edit_building_path(@building) %> | <%= link_to 'Back', buildings_path %>

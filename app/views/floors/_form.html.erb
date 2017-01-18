@@ -1,0 +1,13 @@
+<%= form_for([@building, @building.floors.build]) do |f|%>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :image_name %><br>
+    <%= f.text_field :image_name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
