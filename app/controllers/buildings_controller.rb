@@ -54,9 +54,3 @@ class BuildingsController < ApplicationController
     end
 
 end
-
-git add -A
-git commit -m "Add user buildings"
-git checkout master
-git merge user-microposts
-git push
