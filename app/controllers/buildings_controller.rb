@@ -1,49 +1,62 @@
 class BuildingsController < ApplicationController
-  http_basic_authenticate_with name: "ting", password: "111111", except: [:index, :show]
+  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :correct_user,   only: :destroy
 
   def index
-    @buildings = Building.all
+    @buildings = current_user.buildings.all
   end
 
   def show
-    @building = Building.find(params[:id])
+    @building = current_user.buildings.find(params[:id])
   end
 
   def new
-    @building = Building.new
+    @building = current_user.buildings.new
   end
 
   def edit
-    @building = Building.find(params[:id])
+    @building = current_user.buildings.find(params[:id])
   end
 
   def create
-    @building = Building.new(building_params)
+    @building = current_user.buildings.new(building_params)
     if @building.save
-      redirect_to @building
+      flash[:success] = "Building created!"
+      redirect_to root_url
     else
-      render 'new'
+      render 'static_pages/home'
     end
   end
 
   def update
-    @building = Building.find(params[:id])
     if @building.update(building_params)
-      redirect_to @building
+      redirect_to request.referrer || root_url
     else
       render 'edit'
     end
   end
 
   def destroy
-    @building = Building.find(params[:id])
     @building.destroy
-    redirect_to buildings_path
+    flash[:success] = "Building deleted"
+    redirect_to request.referrer || root_url
   end
 
   private
 
-  def building_params
-    params.require(:building).permit(:name, :socket_address)
-  end
+    def building_params
+      params.require(:building).permit(:name, :socket_address)
+    end
+
+    def correct_user
+      @building = current_user.buildings.find_by(id: params[:id])
+      redirect_to root_url if @building.nil?
+    end
+
 end
+
+git add -A
+git commit -m "Add user buildings"
+git checkout master
+git merge user-microposts
+git push

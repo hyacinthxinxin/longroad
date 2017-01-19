@@ -1,0 +1,11 @@
+<li id="building-<%= building.id %>">
+  <%= link_to gravatar_for(building.user, size: 50), building.user %>
+  <span class="user"><%= link_to building.user.name, building.user %></span>
+  <span class="content"><%= building.name %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(building.created_at) %> ago.
+    <% if current_user?(building.user) %>
+      <%= link_to "delete", building, method: :delete, data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>
