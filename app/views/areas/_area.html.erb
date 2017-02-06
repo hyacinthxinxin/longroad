@@ -1,0 +1,10 @@
+<tr>
+    <td><%= area.name %></td>
+    <td><%= area.image_name %></td>
+    <td><%= link_to 'Show', building_floor_area_path(area.floor.building, area.floor, area) %></td>
+    <td><%= link_to 'Edit', edit_building_floor_area_path(area.floor.building, area.floor, area) %></td>
+    <td><%= link_to 'Destroy Floor', [area.floor.building, area.floor, area],
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>%>
+</tr>
+

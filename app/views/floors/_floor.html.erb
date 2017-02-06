@@ -1,15 +1,12 @@
-<p>
-  <strong>Name:</strong>
-  <%= floor.name %>
-</p>
+<tr>
+  <td><%= floor.name %></td>
+  <td><%= floor.image_name %></td>
+  <td><%= link_to 'Show', building_floor_path(floor.building, floor) %></td>
+  <td><%= link_to 'Edit', edit_building_floor_path(floor.building, floor) %></td>
+  <td><%= link_to 'Destroy Floor', [floor.building, floor],
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+</tr>
+    
 
-<p>
-  <strong>Image Name:</strong>
-  <%= floor.image_name %>
-</p>
 
-<p>
-<%= link_to 'Destroy Floor', [floor.building, floor],
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-</p>

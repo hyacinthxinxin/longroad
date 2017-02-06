@@ -20,7 +20,16 @@ Rails.application.routes.draw do
   # end
 
   resources :users
-  resources :buildings
+  resources :buildings do
+    resources :floors do 
+      resources :areas do
+        resources :devices do
+          resources :cams do
+            end
+        end
+      end 
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

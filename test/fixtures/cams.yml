@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  image_name: MyString
+  i_type: 1
+  control_type: 1
+  control_address: MyString
+  status_address: MyString
+  control_value: 1
+  status_value: 1
+  min_control_value: 1
+  max_control_value: 1
+  min_status_value: 1
+  max_status_value: 1
+  device: one
+
+two:
+  name: MyString
+  image_name: MyString
+  i_type: 1
+  control_type: 1
+  control_address: MyString
+  status_address: MyString
+  control_value: 1
+  status_value: 1
+  min_control_value: 1
+  max_control_value: 1
+  min_status_value: 1
+  max_status_value: 1
+  device: two

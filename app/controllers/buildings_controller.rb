@@ -29,6 +29,7 @@ class BuildingsController < ApplicationController
   end
 
   def update
+    @building = current_user.buildings.find(params[:id])
     if @building.update(building_params)
       redirect_to request.referrer || root_url
     else

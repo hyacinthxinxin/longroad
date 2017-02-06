@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119075353) do
+ActiveRecord::Schema.define(version: 20170206072754) do
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_name"
+    t.integer  "floor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["floor_id"], name: "index_areas_on_floor_id"
+  end
 
   create_table "buildings", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +30,35 @@ ActiveRecord::Schema.define(version: 20170119075353) do
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_buildings_on_user_id"
+  end
+
+  create_table "cams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_name"
+    t.integer  "i_type"
+    t.integer  "control_type"
+    t.string   "control_address"
+    t.string   "status_address"
+    t.integer  "control_value"
+    t.integer  "status_value"
+    t.integer  "min_control_value"
+    t.integer  "max_control_value"
+    t.integer  "min_status_value"
+    t.integer  "max_status_value"
+    t.integer  "device_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["device_id"], name: "index_cams_on_device_id"
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_name"
+    t.integer  "i_type"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_devices_on_area_id"
   end
 
   create_table "floors", force: :cascade do |t|

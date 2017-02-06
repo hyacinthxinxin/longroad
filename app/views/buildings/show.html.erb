@@ -1,18 +1,24 @@
 
 <p>
-  <strong>Name:</strong>
+  <strong>项目名称:</strong>
   <%= @building.name %>
 </p>
  
 <p>
-  <strong>socket_address:</strong>
+  <strong>端口地址:</strong>
   <%= @building.socket_address %>
 </p>
+<%= link_to 'Back', buildings_path %>
 
-<h2>Floors:</h2>
-<%= render @building.floors %>
+<h2>所有楼层:</h2>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>图片</th>
+    <th colspan="2"></th>
+  </tr>
+    <%= render @building.floors %>
+</table>
 
-<h2>Add a floor:</h2>
-<%= render 'floors/form' %>
-
-<%= link_to 'Edit', edit_building_path(@building) %> | <%= link_to 'Back', buildings_path %>
+<h2>add a floor:</h2>
+<%= render 'floors/form'%>

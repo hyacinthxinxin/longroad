@@ -1,0 +1,33 @@
+<p>
+  <strong>楼层名称:</strong>
+  <%= @floor.name %>
+</p>
+ 
+<p>
+  <strong>楼层图片:</strong>
+  <%= @floor.image_name %>
+</p>
+
+<%= link_to 'Back', building_path(@floor.building) %>
+
+<h2>所有房间区域</h2>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>图片</th>
+    <th colspan="2"></th>
+  </tr>
+  <%= render @floor.areas %>
+</table>
+
+<h2>添加房间区域</h2>
+<%= form_for([@floor.building, @floor, @floor.areas.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "房间区域的名字." %>
+  </div>
+  <div class="field">
+    <%= f.text_field :image_name, placeholder: "房间区域图片" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

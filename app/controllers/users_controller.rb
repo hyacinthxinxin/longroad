@@ -55,8 +55,6 @@ class UsersController < ApplicationController
 
     # Before filters
 
-
-
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])

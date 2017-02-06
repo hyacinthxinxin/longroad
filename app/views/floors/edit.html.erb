@@ -1,4 +1,6 @@
-<%= form_for([@building, @building.floors.build]) do |f| %>
+<h1>编辑楼层</h1>
+
+<%= form_for([@floor.building, @floor]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :name, placeholder: "楼层的名字." %>
@@ -8,3 +10,5 @@
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to 'Back', building_path(@floor.building) %>

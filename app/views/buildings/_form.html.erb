@@ -1,0 +1,11 @@
+<%= form_for(@building) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "建筑的名字." %>
+  </div>
+  <div class="field">
+    <p>建筑的地址</p>
+    <%= f.text_field :socket_address, placeholder: "建筑的地址." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
