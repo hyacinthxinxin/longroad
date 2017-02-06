@@ -1,0 +1,22 @@
+<%#<tr>%>
+    <%#<td><%= cam.name %></td>%>
+    <%#<td><%= cam.image_name %></td>%>
+    <%#<td><%= cam.i_type %></td>%>
+    <%#<td><%= cam.control_type %></td>%>
+    <%#<td><%= cam.control_address %></td>%>
+    <%#<td><%= cam.status_address %></td>%>
+<%#</tr>%>
+
+<%= form_for([cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label cam.name%>
+  </div>
+  <div class="field">
+    <%= f.text_field :control_address, placeholder: "控制地址" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :status_address, placeholder: "反馈地址" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

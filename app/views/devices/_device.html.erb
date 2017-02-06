@@ -1,0 +1,11 @@
+<tr>
+    <td><%= device.name %></td>
+    <td><%= device.image_name %></td>
+    <td><%= device.i_type %></td>
+    <td><%= link_to 'Show', building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device) %></td>
+    <td><%= link_to 'Edit', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device) %></td>
+    <td><%= link_to 'Destroy Device', [device.area.floor.building, device.area.floor, device.area, device],
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+</tr>
+

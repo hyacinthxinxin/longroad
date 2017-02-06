@@ -1,0 +1,37 @@
+<p>
+  <strong>楼层名称:</strong>
+  <%= @area.name %>
+</p>
+ 
+<p>
+  <strong>楼层图片:</strong>
+  <%= @area.image_name %>
+</p>
+
+<%= link_to 'Back to Floor', building_floor_path(@area.floor.building, @area.floor) %>
+
+<h2>所有房间设备</h2>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>图片</th>
+    <th>种类</th>
+    <th colspan="2"></th>
+  </tr>
+  <%= render @area.devices %>
+</table>
+
+<h2>添加房间内设备</h2>
+<%= form_for([@area.floor.building, @area.floor, @area, @area.devices.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "设备的名字." %>
+  </div>
+  <div class="field">
+    <%= f.text_field :image_name, placeholder: "设备的图片" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :i_type, placeholder: "设备的种类" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

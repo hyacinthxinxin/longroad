@@ -1,4 +1,10 @@
 class AreasController < ApplicationController
+
+    def show      
+      @floor = Floor.find(params[:floor_id])
+      @area = @floor.areas.find(params[:id])
+    end
+
     def create
       @floor = Floor.find(params[:floor_id])
       @area = @floor.areas.create(area_params)
