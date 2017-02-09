@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170206072754) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "areas", force: :cascade do |t|
     t.string   "name"
     t.string   "image_name"
     t.integer  "floor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["floor_id"], name: "index_areas_on_floor_id"
+    t.index ["floor_id"], name: "index_areas_on_floor_id", using: :btree
   end
 
   create_table "buildings", force: :cascade do |t|
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170206072754) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_buildings_on_user_id"
+    t.index ["user_id"], name: "index_buildings_on_user_id", using: :btree
   end
 
   create_table "cams", force: :cascade do |t|
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170206072754) do
     t.integer  "device_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.index ["device_id"], name: "index_cams_on_device_id"
+    t.index ["device_id"], name: "index_cams_on_device_id", using: :btree
   end
 
   create_table "devices", force: :cascade do |t|
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170206072754) do
     t.integer  "area_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area_id"], name: "index_devices_on_area_id"
+    t.index ["area_id"], name: "index_devices_on_area_id", using: :btree
   end
 
   create_table "floors", force: :cascade do |t|
@@ -67,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170206072754) do
     t.integer  "building_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["building_id"], name: "index_floors_on_building_id"
+    t.index ["building_id"], name: "index_floors_on_building_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,7 +81,12 @@ ActiveRecord::Schema.define(version: 20170206072754) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "areas", "floors"
+  add_foreign_key "buildings", "users"
+  add_foreign_key "cams", "devices"
+  add_foreign_key "devices", "areas"
+  add_foreign_key "floors", "buildings"
 end
