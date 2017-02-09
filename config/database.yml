@@ -31,7 +31,7 @@ production:
   host: localhost
   database: cs1119it_production
   pool: 5
-  username: fanxin_postgresql
+  username: cs1119ituser
   password: ABBfan,xin1234
 
 # development:
