@@ -29,9 +29,9 @@ production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: cs1119it_production_fanxin
+  database: cs1119it_production
   pool: 5
-  username: cs1119ituser
+  username: fanxin_postgresql
   password: ABBfan,xin1234
 
 # development:
