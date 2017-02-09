@@ -28,7 +28,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: cs1119it_production
+  host: localhost
+  database: cs1119it_production_fanxin
   pool: 5
   username: cs1119ituser
   password: ABBfan,xin1234
