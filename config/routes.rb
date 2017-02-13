@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get 'api/v1/login', to: 'api#login'
+  get 'api/v1/project', to: 'api#project'
   # resources :users do
   #   resources :buildings do
   #     resources :floors
