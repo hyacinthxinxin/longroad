@@ -11,6 +11,13 @@ class AreasController < ApplicationController
       redirect_to building_floor_path(@floor.building, @floor)
     end
     
+    def destroy
+      @area = Area.find(params[:id])
+      @area.destroy
+      flash[:success] = "Area deleted"
+      redirect_to request.referrer || root_url
+    end
+
     private
 
       def area_params

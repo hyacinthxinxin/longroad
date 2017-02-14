@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'api/v1/login', to: 'api#login'
   get 'api/v1/project', to: 'api#project'
+  get 'api/v1/buildings', to: 'api#buildings'
+  
   # resources :users do
   #   resources :buildings do
   #     resources :floors

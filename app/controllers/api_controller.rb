@@ -5,8 +5,18 @@ class ApiController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: {
           'result': true,
-          'buildings': user.buildings.all
+          'user_id': user.id
       }
+    else
+      render json: {
+          'result': false
+      }
+    end
+  end
+
+  def buildings
+    if user = User.find_by(id: params[:user_id])
+      render json: user.buildings.all
     else
       render json: {
           'result': false

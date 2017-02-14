@@ -20,8 +20,8 @@ class DevicesController < ApplicationController
           when 4 # 空调
             @device.cams.create([{:name => '开关',:i_type => 40, :control_type => 0},
                                   {:name => '调温',:i_type => 41, :control_type => 2},
-                                  {:name => '制冷',:i_type => 42, :control_type => 1},
-                                  {:name => '制热',:i_type => 43, :control_type => 1},
+                                  {:name => '制热',:i_type => 42, :control_type => 1},
+                                  {:name => '制冷',:i_type => 43, :control_type => 1},
                                   {:name => '通风',:i_type => 44, :control_type => 1},
                                   {:name => '除湿',:i_type => 45, :control_type => 1},
                                   {:name => '低速',:i_type => 46, :control_type => 1},
