@@ -1,11 +1,12 @@
 <tr>
   <td><%= floor.name %></td>
   <td><%= floor.image_name %></td>
-  <td><%= link_to 'Show', building_floor_path(floor.building, floor) %></td>
-  <td><%= link_to 'Edit', edit_building_floor_path(floor.building, floor) %></td>
-  <td><%= link_to 'Destroy Floor', [floor.building, floor],
+  <td>
+  <%= link_to '详情', building_floor_path(floor.building, floor) , class: 'btn btn-primary' %>
+  <%= link_to '编辑', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning' %>
+  <%= link_to '删除', [floor.building, floor],
           method: :delete,
-          data: { confirm: 'Are you sure?' } %></td>
+          data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
 </tr>
     
 

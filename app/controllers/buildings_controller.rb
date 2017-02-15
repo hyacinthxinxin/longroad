@@ -24,14 +24,15 @@ class BuildingsController < ApplicationController
       flash[:success] = "Building created!"
       redirect_to root_url
     else
-      render 'static_pages/home'
+      render 'new'
     end
   end
 
   def update
     @building = current_user.buildings.find(params[:id])
     if @building.update(building_params)
-      redirect_to request.referrer || root_url
+      # redirect_to request.referrer || root_url
+      redirect_to buildings_path
     else
       render 'edit'
     end

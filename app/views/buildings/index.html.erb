@@ -1,22 +1,24 @@
 <h1>Listing buildings</h1>
  
-<%= link_to 'New buidling', new_building_path %>
-<table>
+<%= link_to '新建项目', new_building_path, class: 'btn btn-info'  %>
+<table class="table">
   <tr>
     <th>名称</th>
     <th>地址</th>
-    <th colspan="2"></th>
+    <th colspan="3">操作</th>
   </tr>
  
   <% @buildings.each do |building| %>
     <tr>
       <td><%= building.name %></td>
       <td><%= building.socket_address %></td>
-      <td><%= link_to 'Show', building_path(building) %></td>
-      <td><%= link_to 'Edit', edit_building_path(building) %></td>
-      <td><%= link_to 'Destroy', building_path(building),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <td>
+      <div class="list_group">
+            <%= link_to '详情', building_path(building), class: 'btn btn-primary' %>
+            <%= link_to '编辑', edit_building_path(building), class: 'btn btn-warning' %>
+            <%= link_to '删除', building_path(building), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%>
+      </div>
+      </td>
     </tr>
   <% end %>
 </table>

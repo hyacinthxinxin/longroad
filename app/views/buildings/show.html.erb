@@ -1,3 +1,4 @@
+<%= link_to '返回项目列表', buildings_path %>
 
 <p>
   <strong>项目名称:</strong>
@@ -8,17 +9,16 @@
   <strong>端口地址:</strong>
   <%= @building.socket_address %>
 </p>
-<%= link_to 'Back', buildings_path %>
 
 <h2>所有楼层:</h2>
-<table>
+<table class='table'>
   <tr>
     <th>名称</th>
     <th>图片</th>
-    <th colspan="2"></th>
+    <th colspan="3">操作</th>
   </tr>
     <%= render @building.floors %>
 </table>
 
-<h2>add a floor:</h2>
+<h2>添加楼层:</h2>
 <%= render 'floors/form'%>
