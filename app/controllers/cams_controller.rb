@@ -10,8 +10,8 @@ class CamsController < ApplicationController
 
     private
 
-    def cam_params
-      params.require(:cam).permit(:name, :image_name, :control_address, :status_address)
-    end
+      def cam_params
+        params.require(:cam).permit(:control_address, :status_address, :control_type, :control_value)
+      end
 
 end

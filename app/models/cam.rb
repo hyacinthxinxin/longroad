@@ -13,4 +13,5 @@ class Cam < ApplicationRecord
     self.min_status_value ||= 0
     self.max_status_value ||= 0
   end
+  
 end

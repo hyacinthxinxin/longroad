@@ -1,3 +1,11 @@
+<ol class="breadcrumb">
+  <li><%= link_to '我的所有项目', buildings_path %></li>
+  <li><%= link_to @device.area.floor.building.name+'('+@device.area.floor.building.socket_address+')', building_path(@device.area.floor.building) %></li>
+  <li><%= link_to @device.area.floor.name, building_floor_path(@device.area.floor.building, @device.area.floor) %></li>
+  <li><%= link_to @device.area.name, building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area) %></li>
+  <li class="active"><%= @device.name%></li>
+</ol>
+
 <p>
   <strong>设备名称:</strong>
   <%= @device.name %>
@@ -12,8 +20,6 @@
   <strong>设备类型:</strong>
   <%= @device.i_type %>
 </p>
-
-<%= link_to 'Back to Area', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area) %>
 
 
 <h2>所有控件</h2>

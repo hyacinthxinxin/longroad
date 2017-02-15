@@ -1,19 +1,35 @@
-<%= form_for([cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam], html: {role: 'form', class: "form_inline"}) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.label cam.name%>
-  </div>
-  <div class="field form-group">
-    <%= f.label '控制地址'%>
-    <%= f.text_field :control_address, placeholder: "控制地址" %>
-  </div>
-  <div class="field form-group">
-    <%= f.label '反馈地址'%>
-    <%= f.text_field :status_address, placeholder: "反馈地址" %>
-  </div>
-  <div class="field form-group">
-    <%= f.label '控制类型'%>
-    <%= f.select(:control_type, [['1bit', 0],['1byte', 1], ['2byte', 2]]) %>
-  </div>
-  <%= f.submit "确定", class: "btn btn-primary" %>
-<% end %>
+<div class="form-inline">
+  <%= form_for([cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam]) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div>
+      <p><%= f.label cam.name%></p>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <%= f.label '控制地址', class: 'input-group-addon'%>
+        <%= f.text_field :control_address, placeholder: "控制地址", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+          <%= f.label '反馈地址', class: 'input-group-addon'%>
+          <%= f.text_field :status_address, placeholder: "反馈地址", class: 'form-control'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <%= f.label '控制类型', class: 'input-group-addon'%>
+        <%= f.select(:control_type, [['1bit', 0], ['1byte', 1], ['2byte', 2]], {}, {class: 'form-control'}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <%= f.label '控制值', class: 'input-group-addon'%>
+        <%= f.text_field :control_value, placeholder: "控制值" , class: 'form-control'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.submit "保存", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

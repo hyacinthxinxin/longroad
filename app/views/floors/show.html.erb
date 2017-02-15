@@ -1,14 +1,8 @@
-<p>
-  <strong>楼层名称:</strong>
-  <%= @floor.name %>
-</p>
- 
-<p>
-  <strong>楼层图片:</strong>
-  <%= @floor.image_name %>
-</p>
-
-<%= link_to '返回项目', building_path(@floor.building) %>
+<ol class="breadcrumb">
+  <li><%= link_to '我的所有项目', buildings_path %></li>
+  <li><%= link_to @floor.building.name+'('+@building.socket_address+')', building_path(@floor.building) %></li>
+  <li class="active"><%= @floor.name%></li>
+</ol>
 
 <h2>所有房间区域</h2>
 <table class='table'>
@@ -23,13 +17,13 @@
 <h2>添加房间区域</h2>
 <%= form_for([@floor.building, @floor, @floor.areas.build]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label '房间区域名称'%>
-    <%= f.text_field :name, placeholder: "房间区域的名字." %>
+    <%= f.text_field :name, placeholder: "房间区域的名字.", class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label '房间区域图片'%>
-    <%= f.text_field :image_name, placeholder: "房间区域图片" %>
+    <%= f.text_field :image_name, placeholder: "房间区域图片", class: 'form-control' %>
   </div>
-  <%= f.submit "确定", class: "btn btn-primary" %>
+  <%= f.submit "确定", class: "btn btn-primary btn-block" %>
 <% end %>

@@ -16,7 +16,7 @@ class DevicesController < ApplicationController
                                   {:name => '调光',:i_type => 21, :control_type => 1}])
           when 3 # 窗帘
             @device.cams.create([{:name => '打开',:i_type => 30, :control_type => 0},
-                      {:name => '关闭',:i_type => 31, :control_type => 0}])
+                                  {:name => '关闭',:i_type => 31, :control_type => 0}])
           when 4 # 空调
             @device.cams.create([{:name => '开关',:i_type => 40, :control_type => 0},
                                   {:name => '调温',:i_type => 41, :control_type => 2},

@@ -1,16 +1,9 @@
-<%= link_to '返回项目列表', buildings_path %>
+<ol class="breadcrumb">
+  <li><%= link_to '我的所有项目', buildings_path %></li>
+  <li class="active"><%=  @building.name%>(<%= @building.socket_address %>)</li>
+</ol>
 
-<p>
-  <strong>项目名称:</strong>
-  <%= @building.name %>
-</p>
- 
-<p>
-  <strong>端口地址:</strong>
-  <%= @building.socket_address %>
-</p>
-
-<h2>所有楼层:</h2>
+<h2>所有楼层列表</h2>
 <table class='table'>
   <tr>
     <th>名称</th>

@@ -1,14 +1,9 @@
-<p>
-  <strong>楼层名称:</strong>
-  <%= @area.name %>
-</p>
- 
-<p>
-  <strong>楼层图片:</strong>
-  <%= @area.image_name %>
-</p>
-
-<%= link_to '返回楼层', building_floor_path(@area.floor.building, @area.floor) %>
+<ol class="breadcrumb">
+  <li><%= link_to '我的所有项目', buildings_path %></li>
+  <li><%= link_to @area.floor.building.name+'('+@area.floor.building.socket_address+')', building_path(@area.floor.building) %></li>
+  <li><%= link_to @area.floor.name, building_floor_path(@area.floor.building, @area.floor)%></li>
+  <li class="active"><%= @area.name%></li>
+</ol>
 
 <h2>所有房间设备</h2>
 <table class="table">
@@ -24,17 +19,17 @@
 <h2>添加房间内设备</h2>
 <%= form_for([@area.floor.building, @area.floor, @area, @area.devices.build]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name, '设备名称'%>
-    <%= f.text_field :name, placeholder: "设备的名字." %>
+    <%= f.text_field :name, placeholder: "设备的名字.", class:'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image_name, '设备图片'%>
-    <%= f.text_field :image_name, placeholder: "设备的图片" %>
+    <%= f.text_field :image_name, placeholder: "设备的图片", class:'form-control'  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :i_type, '设备类型'%>
-    <%= f.select(:i_type, [['场景', 0], ['灯光', 1], ['灯光+调光',2],['窗帘',3],['空调',4],['地暖',5],['新风',6]]) %>
+    <%= f.select(:i_type, [['场景', 0], ['灯光', 1], ['灯光+调光',2],['窗帘',3],['空调',4],['地暖',5],['新风',6]],{}, { :class =>'form-control'}) %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "确定", class: "btn btn-primary btn-block" %>
 <% end %>
