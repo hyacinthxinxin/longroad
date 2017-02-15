@@ -37,7 +37,8 @@ class DevicesController < ApplicationController
                                   {:name => '高速',:i_type => 63, :control_type => 1}])
           else 
             puts '...'
-          end
+        end
+
         flash[:success] = "Device created!"
         @area = Area.find(params[:area_id])
         redirect_to building_floor_area_path(@area.floor.building, @area.floor, @area)
@@ -47,7 +48,20 @@ class DevicesController < ApplicationController
       end
 
     end
-    
+
+    def edit
+      @device = Device.find(params[:id])
+    end
+
+    def update
+      @device = Device.find(params[:id])
+      if @device.update(device_params)
+        redirect_to building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
+      else
+        render 'edit'
+      end
+    end
+
     def destroy
       @device = Device.find(params[:id])
       @device.destroy

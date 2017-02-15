@@ -11,6 +11,19 @@ class AreasController < ApplicationController
       redirect_to building_floor_path(@floor.building, @floor)
     end
     
+    def edit
+      @area = Area.find(params[:id])
+    end
+
+    def update
+      @area = Area.find(params[:id])
+      if @area.update(area_params)
+        redirect_to building_floor_path(@area.floor.building, @area.floor)
+      else
+        render 'edit'
+      end
+    end
+
     def destroy
       @area = Area.find(params[:id])
       @area.destroy

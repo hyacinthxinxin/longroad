@@ -2,13 +2,14 @@
 
 <%= form_for([@floor.building, @floor]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :name, placeholder: "楼层的名字." %>
+  <div class="form-group">
+    <%= f.label '楼层名称'%>
+    <%= f.text_field :name, placeholder: "楼层的名字.", class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.text_field :image_name, placeholder: "楼层图片" %>
+  <div class="form-group">
+    <%= f.label '楼层图片'%>
+    <%= f.text_field :image_name, placeholder: "楼层图片", class: 'form-control' %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "确定", class: "btn btn-primary btn-block" %>
+  <%= link_to "取消", building_path(@floor.building), class: "btn btn-default btn-block"%>
 <% end %>
-
-<%= link_to 'Back', building_path(@floor.building) %>

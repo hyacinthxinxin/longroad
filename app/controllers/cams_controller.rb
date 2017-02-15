@@ -1,12 +1,12 @@
 class CamsController < ApplicationController
     def update
-    @cam = Cam.find(params[:id])
-    if @cam.update(cam_params)
-      redirect_to request.referrer || root_url
-    else
-      render 'edit'
+      @cam = Cam.find(params[:id])
+      if @cam.update(cam_params)
+        redirect_to request.referrer || root_url
+      else
+        render 'edit'
+      end
     end
-  end
 
     private
 

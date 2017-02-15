@@ -6,29 +6,5 @@
   <li class="active"><%= @device.name%></li>
 </ol>
 
-<p>
-  <strong>设备名称:</strong>
-  <%= @device.name %>
-</p>
- 
-<p>
-  <strong>设备图片:</strong>
-  <%= @device.image_name %>
-</p>
-
-<p>
-  <strong>设备类型:</strong>
-  <%= @device.i_type %>
-</p>
-
-
 <h2>所有控件</h2>
-<table>
-  <tr>
-    <th>名称</th>
-    <th>图片</th>
-    <th>类型</th>
-    <th colspan="2"></th>
-  </tr>
-  <%= render @device.cams %>
-</table>
+<%= render @device.cams %>

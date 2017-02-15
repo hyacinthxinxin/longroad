@@ -30,7 +30,7 @@ class FloorsController < ApplicationController
       @building = Building.find(params[:building_id])
       @floor = @building.floors.find(params[:id])
       if @floor.update(floor_params)
-        redirect_to request.referrer || root_url
+        redirect_to building_path(@building)
       else
         render 'edit'
       end
