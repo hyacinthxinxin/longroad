@@ -1,6 +1,8 @@
 class Cam < ApplicationRecord
   belongs_to :device, dependent: :destroy
   validates :name, presence: true, length: { minimum: 2 }
+  
+  default_scope -> { order(id: :asc) }
 
   before_save :default_values
   def default_values
@@ -14,4 +16,6 @@ class Cam < ApplicationRecord
     self.max_status_value ||= 0
   end
   
+  # scope :desc, order(i_type: :DESC)
+
 end

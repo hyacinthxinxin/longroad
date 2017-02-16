@@ -6,5 +6,11 @@
   <li class="active"><%= @device.name%></li>
 </ol>
 
-<h2>所有控件</h2>
-<%= render @device.cams %>
+<h2><%= label :name, @device.name+'的所有控件'%></h2>
+<%= form_for([@device.area.floor.building, @device.area.floor, @device.area, @device]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.fields_for :cams do |builder| %>
+    <%= render "cam_fields", :f => builder %>
+  <% end %>
+  <%= f.submit "保存修改", class: "btn btn-primary btn-block" %>
+<% end %>

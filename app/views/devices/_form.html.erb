@@ -7,19 +7,20 @@
 <% if new %>
     <div class="form-group">
         <%= f.label :i_type, '设备类型'%>
-        <%= f.select(:i_type, Device::DeviceTypes,{}, { :class =>'form-control'}) %>
+        <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
     </div>
 <% end %>
 
     <div class="form-group">
         <%= f.label :image_name, '设备图标'%>
+        <br>
         <%= f.collection_radio_buttons( :image_name, 
                                         Device::DefaultImages,
                                         :first,
                                         :last,
                                         item_wrapper_tag: :div
                                     ) do |b|
-                                        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_sel.png", class: "device_image") }
+                                        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_sel.png", size: '48x48', class: "device_image") }
                                         end
         %>
     </div>

@@ -4,18 +4,16 @@
   <%= f.text_field :name, placeholder: "房间区域的名字.", class:'form-control' %>
 </div>
 <div class="form-group">
-  <div class="form-group">
-    <%= f.label :image_name, '房间区域图片'%>
-    <%= f.collection_radio_buttons( :image_name, 
-                                    Area::DefaultAreaImages,
-                                    :first,
-                                    :last,
-                                    item_wrapper_tag: :div
-                                ) do |b|
-                                    b.label { b.radio_button+image_tag("le_icons/room_icon/#{b.value}_room.png", class: "area_image") }
-                                    end
-    %>
-  </div>
+  <%= f.label :image_name, '房间区域图片'%>
+  <br>
+  <%= f.collection_radio_buttons( :image_name, 
+                                  Area::DefaultAreaImages,
+                                  :first,
+                                  :last,
+                                  item_wrapper_tag: :div
+                              ) do |b|
+                                  b.label { b.radio_button+image_tag("le_icons/room_icon/#{b.value}_room.png", size: '48x48',class: "area_image ") }
+                                  end %>
 </div>
 <div>
   <%= f.submit "确定", class: "btn btn-primary btn-block" %>

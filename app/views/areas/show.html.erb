@@ -13,5 +13,5 @@
     <th>设备种类</th>
     <th>操作</th>
   </tr>
-  <%= render @area.devices %>
+  <%= render @area.devices || "devices/empty_list" %>
 </table>
