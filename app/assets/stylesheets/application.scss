@@ -17,6 +17,9 @@
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "buildings.scss";
+@import "areas.scss";
+@import "devices.scss";
 
 $gray-medium-light: #eaeaea;
 
@@ -70,7 +73,8 @@ html, body {
 .site-footer {
   height: 50px;
   margin-top: -50px;
-  background: orange;
+  padding: 25px 40px;
+  background-color: rgba(199, 199, 199, .2);
   a {
     color: #555;
     &:hover {

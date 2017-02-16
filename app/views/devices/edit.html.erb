@@ -1,16 +1,4 @@
-<h2>添加房间内设备</h2>
+<h2>编辑设备</h2>
 <%= form_for([@device.area.floor.building, @device.area.floor, @device.area, @device]) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="form-group">
-    <%= f.label :name, '设备名称'%>
-    <%= f.text_field :name, placeholder: "设备的名字.", class:'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :image_name, '设备图片'%>
-    <%= f.text_field :image_name, placeholder: "设备的图片", class:'form-control'  %>
-  </div>
-  <div>
-    <%= f.submit "确定", class: "btn btn-primary btn-block" %>
-    <%= link_to "取消", building_floor_area_path(@device.area.floor.building,@device.area.floor, @device.area), class: "btn btn-default btn-block"%>
-  </div>
+  <%= render partial: 'form', locals: { f: f, new: false } %>
 <% end %>

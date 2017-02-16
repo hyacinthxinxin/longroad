@@ -1,9 +1,8 @@
 <tr>
-    <td><%= device.name %></td>
-    <td><%= device.image_name %></td>
-    <td><%= device.i_type %></td>
-    <td><%= link_to '详情', building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-primary' %>
-        <%= link_to '编辑', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-warning' %>
-        <%= link_to '删除', [device.area.floor.building, device.area.floor, device.area, device], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+  <td><%= device.name %></td>
+  <td><%= image_tag("le_icons/mode_icon/mode_#{device.image_name}_sel.png", size: "36x36", alt: "Device Image")%></td>
+  <td><%= device.i_type %></td>
+  <td><%= link_to '详情', building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-primary' %>
+      <%= link_to '编辑', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-warning' %>
+      <%= link_to '删除', [device.area.floor.building, device.area.floor, device.area, device], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
 </tr>
-

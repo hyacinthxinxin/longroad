@@ -1,6 +1,12 @@
 class DevicesController < ApplicationController
+
     def show      
       @device = Area.find(params[:area_id]).devices.find(params[:id])
+    end
+
+    def new
+      @area = Area.find(params[:area_id])
+      @device = @area.devices.new
     end
 
     def create

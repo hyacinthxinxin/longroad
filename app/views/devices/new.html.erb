@@ -1,0 +1,4 @@
+<h2>新建设备设备</h2>
+<%= form_for([@area.floor.building, @area.floor, @area, @area.devices.build]) do |f| %>
+  <%= render partial: 'form', locals: { f: f, new: true } %>
+<% end %>

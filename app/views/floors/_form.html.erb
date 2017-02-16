@@ -9,4 +9,5 @@
     <%= f.text_field :image_name, placeholder: "楼层图片", class: 'form-control' %>
   </div>
   <%= f.submit "确定", class: "btn btn-primary btn-block" %>
+  <%= link_to '返回', building_path(@floor.building), class: "btn btn-primary btn-block" %>
 <% end %>

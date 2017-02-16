@@ -1,16 +1,4 @@
 <h2>编辑房间区域</h2>
 <%= form_for([@area.floor.building, @area.floor, @area]) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="form-group">
-    <%= f.label '房间区域名称'%>
-    <%= f.text_field :name, placeholder: "房间区域的名字.", class:'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label '房间区域图片'%>
-    <%= f.text_field :image_name, placeholder: "房间区域图片", class: 'form-control' %>
-  </div>
-  <div>
-    <%= f.submit "确定", class: "btn btn-primary btn-block" %>
-    <%= link_to "取消", building_floor_path(@area.floor.building, @area.floor), class: "btn btn-default btn-block"%>
-  </div>
+  <%= render partial: 'form', locals: { f: f } %>
 <% end %>

@@ -1,0 +1,23 @@
+<%= render 'shared/error_messages', object: f.object %>
+<div class="form-group">
+  <%= f.label '房间区域名称'%>
+  <%= f.text_field :name, placeholder: "房间区域的名字.", class:'form-control' %>
+</div>
+<div class="form-group">
+  <div class="form-group">
+    <%= f.label :image_name, '房间区域图片'%>
+    <%= f.collection_radio_buttons( :image_name, 
+                                    Area::DefaultAreaImages,
+                                    :first,
+                                    :last,
+                                    item_wrapper_tag: :div
+                                ) do |b|
+                                    b.label { b.radio_button+image_tag("le_icons/room_icon/#{b.value}_room.png", class: "area_image") }
+                                    end
+    %>
+  </div>
+</div>
+<div>
+  <%= f.submit "确定", class: "btn btn-primary btn-block" %>
+  <%= link_to "取消", building_floor_path(@area.floor.building, @area.floor), class: "btn btn-default btn-block"%>
+</div>
