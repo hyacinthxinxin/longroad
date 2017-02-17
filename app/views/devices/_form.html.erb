@@ -7,12 +7,16 @@
 <% if new %>
     <div class="form-group">
         <%= f.label :i_type, '设备类型'%>
-        <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
+        <%= f.select(:i_type, 
+                        Device::DeviceTypes, 
+                        {}, 
+                        { class: 'form-control'}) %>
     </div>
 <% end %>
 
-    <div class="form-group">
-        <%= f.label :image_name, '设备图标'%>
+<% if need_image_choose @device.i_type %>
+    <div class="form-group" id="device_image_choose">
+        <%= f.label :image_name, '设备图标(如果不是场景，请随意选择一个图标)'%>
         <br>
         <%= f.collection_radio_buttons( :image_name, 
                                         Device::DefaultImages,
@@ -20,12 +24,14 @@
                                         :last,
                                         item_wrapper_tag: :div
                                     ) do |b|
-                                        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_sel.png", size: '48x48', class: "device_image") }
+                                        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_sel.png", 
+                                                                            size: '48x48', 
+                                                                            class: "device_image") }
                                         end
         %>
     </div>
-
-
+<% end %>
+<%= f.object.i_type%>
 <div>
     <%= f.submit "确定", class: "btn btn-primary btn-block" %>
     <%= link_to '返回', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area), class: "btn btn-default btn-block" %>

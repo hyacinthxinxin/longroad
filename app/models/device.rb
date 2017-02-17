@@ -11,4 +11,14 @@ class Device < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
   validates :image_name, presence: true
   validates :i_type, presence: true
+
+  after_initialize :init
+ 
+  private
+    def init
+      if self.new_record? && self.i_type.nil?
+        self.i_type = 0
+      end
+    end
+
 end
