@@ -7,10 +7,7 @@
 <% if new %>
     <div class="form-group">
         <%= f.label :i_type, '设备类型'%>
-        <%= f.select(:i_type, 
-                        Device::DeviceTypes, 
-                        {}, 
-                        { class: 'form-control'}) %>
+        <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
     </div>
 <% end %>
 
@@ -31,7 +28,6 @@
         %>
     </div>
 <% end %>
-<%= f.object.i_type%>
 <div>
     <%= f.submit "确定", class: "btn btn-primary btn-block" %>
     <%= link_to '返回', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area), class: "btn btn-default btn-block" %>
