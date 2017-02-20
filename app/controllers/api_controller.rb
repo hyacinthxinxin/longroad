@@ -1,18 +1,5 @@
 class ApiController < ApplicationController
-
-  def login
-    user = User.find_by(email: params[:email].downcase)
-    if user && user.authenticate(params[:password])
-      render json: {
-          'result': true,
-          'user_id': user.id
-      }
-    else
-      render json: {
-          'result': false
-      }
-    end
-  end
+  include DeviseTokenAuth::Concerns::SetUserByToken
 
   def buildings
     if user = User.find_by(id: params[:user_id])

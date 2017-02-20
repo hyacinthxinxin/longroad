@@ -1,6 +1,5 @@
 class BuildingsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :authenticate_user!, :only => [:index, :new]
 
   def index
     @buildings = current_user.buildings.all
@@ -39,6 +38,7 @@ class BuildingsController < ApplicationController
   end
 
   def destroy
+    @building = current_user.buildings.find(params[:id])
     @building.destroy
     flash[:success] = "Building deleted"
     redirect_to request.referrer || root_url

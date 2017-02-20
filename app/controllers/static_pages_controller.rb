@@ -1,7 +1,11 @@
 class StaticPagesController < ApplicationController
+  
+  def index
+    render 'home'
+  end  
+  
   def home
-    # @building = current_user.buildings.build if logged_in?
-    redirect_to buildings_path if logged_in?
+    redirect_to buildings_path if user_signed_in?
   end
 
   def help
@@ -12,4 +16,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
 end
