@@ -1,6 +1,6 @@
 <tr>
   <td><%= device.name %></td>
-  <td><%= image_tag("le_icons/mode_icon/mode_#{device.image_name}_sel.png", size: "48x48", alt: "Device Image")%></td>
+  <td><%= image_tag("le_icons/mode_icon/mode_#{device.image_name}_sel.png", size: "48x48", alt: "Device Image", class: 'device-image')%></td>
   <td>
     <% device.cams.each do |cam|%>
       <p class='cam_detail'><%= cam.name%>

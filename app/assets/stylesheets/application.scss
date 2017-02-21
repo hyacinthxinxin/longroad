@@ -21,8 +21,6 @@
 @import "areas.scss";
 @import "devices.scss";
 
-$gray-medium-light: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -54,7 +52,6 @@ $gray-medium-light: #eaeaea;
   }
 }
 
-
 /* universal */
 
 html, body {
@@ -73,7 +70,7 @@ html, body {
 .site-footer {
   height: 50px;
   margin-top: -50px;
-  padding: 25px 40px;
+  padding: 20px 40px;
   background-color: rgba(199, 199, 199, .2);
   a {
     color: #555;
@@ -89,7 +86,7 @@ html, body {
     list-style: none;
     li {
       float: left;
-      margin-left: 15px;
+      margin-left: 20px;
     }
   }
 }
@@ -164,3 +161,32 @@ aside {
     }
   }
 }
+
+/*flash*/
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
