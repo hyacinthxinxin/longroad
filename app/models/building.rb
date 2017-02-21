@@ -11,9 +11,5 @@ class Building < ApplicationRecord
       def default_values
         self.socket_port ||= 4196
       end
-
-      # def as_json(options={})
-      #   super(include: { floors: { include:  :areas } })
-      # end
       
 end

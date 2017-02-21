@@ -65,7 +65,7 @@ class DevicesController < ApplicationController
         flash[:success] = "Profile updated successfully"
         redirect_to building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
       else
-        render 'edit'
+        render 'show'
       end
     end
 
