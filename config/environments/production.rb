@@ -55,18 +55,20 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "cs1119it_#{Rails.env}"
-  config.action_mailer.perform_caching = false
 
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { :host => 'www.tingspectrum.com' }
   config.action_mailer.delivery_method = :smtp
-
+  config.action_mailer.default :charser => 'utf-8'
   config.action_mailer.smtp_settings = {
                       :address => "smtp.163.com", 
                       :port => 25,
-                      :domain=> "163.com",
-                      :authentication=> :login,
-                      :user_name=> "cs1119it@163.com",#你的邮箱
-                      :password=> "ABBfanxin1234"      #你的密码
+                      :domain => "163.com",
+                      :authentication => 'plain',
+                      :enable_starttls_auto => true,
+                      :user_name => "fanxin0202@163.com",
+                      :password => "LI,xiaoting1234"
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
