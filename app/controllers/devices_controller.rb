@@ -61,7 +61,14 @@ class DevicesController < ApplicationController
 
     def update
       @device = Device.find(params[:id])
-      if @device.update(params.require(:device).permit(:id, :name, :image_name, cams_attributes: [:id, :control_address, :status_address, :control_type, :control_value]))
+      if @device.update(params.require(:device).
+                        permit(:id, :name, :image_name, 
+                                cams_attributes: [:id, 
+                                                  :control_address, 
+                                                  :status_address, 
+                                                  :control_type, 
+                                                  :control_value]))
+
         flash[:success] = "Profile updated successfully"
         redirect_to building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
       else
