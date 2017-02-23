@@ -16,13 +16,13 @@ class AreasController < ApplicationController
     def create
       @floor = Floor.find(params[:floor_id])
       @area = @floor.areas.create(area_params)
-      redirect_to building_floor_path(@floor.building, @floor)
+      redirect_to building_path(@area.floor.building)
     end
 
     def update
       @area = Area.find(params[:id])
       if @area.update(area_params)
-        redirect_to building_floor_path(@area.floor.building, @area.floor)
+        redirect_to building_path(@area.floor.building)
       else
         render 'edit'
       end

@@ -1,2 +1,4 @@
 <h1>新建楼层</h1>
-<%= render 'form'  %>
+<%= form_for([@building, @building.floors.build]) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>

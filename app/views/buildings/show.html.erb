@@ -4,11 +4,45 @@
   <%= link_to '新建楼层', new_building_floor_path(@building), class: 'btn btn-info'  %>
 </ol>
 
-<table class="table table-striped">
-  <tr>
-    <th>楼层名称</th>
-    <th>楼层图标</th>
-    <th>操作</th>
-  </tr>
-  <%= render @building.floors %>
-</table>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% @building.floors.each do |floor|%>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading_<%= floor.id%>">
+        <div class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= floor.id%>" aria-expanded="true" aria-controls="collapseOne">
+            <%= floor.name %>
+            <b class="caret"></b>
+          </a>
+          <%= link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning' %>
+          <%= link_to '删除楼层', [floor.building, floor],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%>
+          <%= link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'  %>
+        </div>
+      </div>
+      <div id="collapse_<%= floor.id%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tr>
+              <th>房间区域名称</th>
+              <th>房间区域图标</th>
+              <th>操作</th>
+            </tr>
+            <% floor.areas.each do |area|%>
+              <tr>
+              <td><%= area.name %></td>
+                <td><%= image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image", class:"area_image")%></td>
+                <td> 
+                    <%= link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary' %>
+                    <%= link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning' %>
+                    <%= link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

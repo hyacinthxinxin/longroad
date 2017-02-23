@@ -1,7 +1,8 @@
 <div class="form-inline">
     <div class="form-group">
         <div class="input-group">
-            <%= f.label f.object.name%>
+            <%= f.label '控件名称', class: 'input-group-addon'%>
+            <%= f.text_field :name, placeholder: "名称", class: 'form-control' %>
         </div>
     </div>
     <br>
@@ -15,7 +16,7 @@
     <div class="form-group">
         <div class="input-group">
             <%= f.label '反馈地址', class: 'input-group-addon'%>
-            <%= f.text_field :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.i_type==0%>
+            <%= f.text_field :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.i_type==0 %>
         </div>
     </div>
 

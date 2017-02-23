@@ -3,8 +3,10 @@
     <%= f.label :name, '设备名称'%>
     <%= f.text_field :name, placeholder: "设备的名字.", class:'form-control' %>
 </div>
-<!--是否是新建设备-->
-<% if new %>
+
+
+<!--是否是新建设备, 上一个版本的东西 不展示了-->
+<% if 0==1 %>
     <div class="form-group">
         <%= f.label :i_type, '设备类型'%>
         <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
@@ -27,8 +29,18 @@
                                         end
         %>
     </div>
+<% else %>
+    <%= f.hidden_field :image_name, value: f.object.image_name %>
 <% end %>
+
+<%= f.hidden_field :i_type, value: f.object.i_type %>
+
+
+<%= f.fields_for :cams do |cam_f| %>
+    <%= render "cam_fields", :f => cam_f %>
+<% end %>
+
 <div>
     <%= f.submit "确定", class: "btn btn-primary btn-block" %>
     <%= link_to '返回', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area), class: "btn btn-default btn-block" %>
-</div>  
+</div>

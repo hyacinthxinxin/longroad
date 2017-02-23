@@ -10,7 +10,7 @@
           控制数值：<%= cam.control_value%></p>
     <% end %>
   </td>
-  <td><%= link_to '编辑控件', building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-primary' %>
+  <td>
       <%= link_to '编辑设备', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-warning' %>
       <%= link_to '删除', [device.area.floor.building, device.area.floor, device.area, device], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
 </tr>
