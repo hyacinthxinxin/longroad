@@ -1,4 +1,2 @@
 <h2>编辑设备</h2>
-<%= form_for [@device.area.floor.building, @device.area.floor, @device.area, @device] do |f| %>
-  <%= render partial: 'form', locals: { f: f, new: false } %>
-<% end %>
+<%= render 'form' %>

@@ -1,46 +1,56 @@
-<%= render 'shared/error_messages', object: f.object %>
-<div class="form-group">
-    <%= f.label :name, '设备名称'%>
-    <%= f.text_field :name, placeholder: "设备的名字.", class:'form-control' %>
-</div>
-
-
-<!--是否是新建设备, 上一个版本的东西 不展示了-->
-<% if 0==1 %>
+<%= form_for [@device.area.floor.building, @device.area.floor, @device.area, @device] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div class="form-group">
-        <%= f.label :i_type, '设备类型'%>
-        <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
+        <%= f.label :name, '设备名称'%>
+        <%= f.text_field :name, placeholder: "设备的名字.", class:'form-control' %>
     </div>
-<% end %>
 
-<% if need_image_choose @device.i_type %>
-    <div class="form-group" id="device_image_choose">
-        <%= f.label :image_name, '设备图标(如果不是场景，请随意选择一个图标)'%>
-        <br>
-        <%= f.collection_radio_buttons( :image_name, 
-                                        Device::DefaultImages,
-                                        :first,
-                                        :last,
-                                        item_wrapper_tag: :div
-                                    ) do |b|
-                                        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_nor.png", 
-                                                                            size: '48x48', 
-                                                                            class: "device-image") }
-                                        end
-        %>
+    <!--是否是新建设备, 上一个版本的东西 不展示了-->
+    <% if 0==1 %>
+        <div class="form-group">
+            <%= f.label :i_type, '设备类型'%>
+            <%= f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'}) %>
+        </div>
+    <% end %>
+
+    <% if @device.i_type == 0 %>
+        <div class="form-group" id="device_image_choose">
+            <%= f.label :image_name, '图标'%>
+            <br>
+            <%= f.collection_radio_buttons( :image_name, 
+                                            Device::DefaultImages,
+                                            :first,
+                                            :last,
+                                            item_wrapper_tag: :div
+                                        ) do |b|
+                                            b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_nor.png", 
+                                                                                size: '48x48', 
+                                                                                class: "device-image") }
+                                            end
+            %>
+        </div>
+    <% else %>
+        <%= f.hidden_field :image_name, value: f.object.image_name %>
+    <% end %>
+
+    <%= f.hidden_field :i_type, value: f.object.i_type %>
+
+    <div>
+        <p><strong>控件列表:</strong></p>
+        <div id="cams">
+            <%= f.fields_for :cams do |cam_f| %>
+                <%= render "cam_fields", f: cam_f %>
+            <% end %>
+            <div class="links">
+                <ul>     
+                    <li><%= link_to_add_association '添加开关', f, :cams, wrap_object: Proc.new { |cam| cam.i_type = 80; cam } %></li>
+                    <li><%= link_to_add_association '添加调光', f, :cams, wrap_object: Proc.new { |cam| cam.i_type = 80; cam } %></li>
+                </ul>
+            </div>
+        </div>
     </div>
-<% else %>
-    <%= f.hidden_field :image_name, value: f.object.image_name %>
-<% end %>
 
-<%= f.hidden_field :i_type, value: f.object.i_type %>
-
-
-<%= f.fields_for :cams do |cam_f| %>
-    <%= render "cam_fields", :f => cam_f %>
-<% end %>
-
-<div>
-    <%= f.submit "确定", class: "btn btn-primary btn-block" %>
+    <%= f.submit "保存修改", class: "btn btn-primary btn-block" %>
     <%= link_to '返回', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area), class: "btn btn-default btn-block" %>
-</div>
+
+<% end %>

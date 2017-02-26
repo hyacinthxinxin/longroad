@@ -51,58 +51,43 @@ class DevicesController < ApplicationController
     end
 
     def create
-      @device = Area.find(params[:area_id]).devices.new(params.require(:device).
-                                                        permit(:id, :name, :image_name, :i_type, 
-                                                                cams_attributes: [:id,
-                                                                                  :name,
-                                                                                  :control_address, 
-                                                                                  :status_address, 
-                                                                                  :control_type, 
-                                                                                  :control_value,
-                                                                                  :_destroy]))
+      @device = Area.find(params[:area_id]).devices.new(device_params)
       if @device.save
-        flash[:success] = "Device created!"
+        flash[:success] = "设备创建成功!"
         @area = Area.find(params[:area_id])
         redirect_to building_floor_area_path(@area.floor.building, @area.floor, @area)
       else
-        flash[:notice] = "Device created fail!"
-        render 'new'
+        flash[:notice] = "设备创建失败!"
+        render :new
       end
 
     end
 
     def edit
-      @device = Device.find(params[:id])
+      @device = Device.find_by(id:params[:id])
     end
 
     def update
-      @device = Device.find(params[:id])
-      if @device.update(params.require(:device).
-                        permit(:id, :name, :image_name, 
-                                cams_attributes: [:id, 
-                                                  :control_address, 
-                                                  :status_address, 
-                                                  :control_type, 
-                                                  :control_value]))
-
-        flash[:success] = "Profile updated successfully"
+      @device = Device.find_by(id:params[:id])
+      if @device.update_attributes(device_params)
+        flash[:success] = "设备修改成功!"
         redirect_to building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
       else
-        render 'show'
+        render :edit
       end
     end
 
     def destroy
       @device = Device.find(params[:id])
       @device.destroy
-      flash[:success] = "Device deleted"
+      flash[:success] = "设备已删除!"
       redirect_to request.referrer || root_url
     end
 
     private
 
       def device_params
-        params.require(:device).permit(:name, :image_name, :i_type)
+        params.require(:device).permit(:name, :image_name, :i_type, cams_attributes: [:id, :i_type, :name, :control_address, :status_address, :control_type, :control_value, :status_value, :min_control_value, :max_control_value, :min_status_value, :max_status_value, :_destroy])
       end
 
 end
