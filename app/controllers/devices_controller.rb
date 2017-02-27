@@ -18,6 +18,7 @@ class DevicesController < ApplicationController
       when 3 # 窗帘
         @device.cams.build([{:name => '打开',:i_type => 30, :control_type => 0},
                               {:name => '关闭',:i_type => 31, :control_type => 0}])
+                              # 上升 32 下降 33 停止 34
       when 4 # 空调
         @device.cams.build([{:name => '开关',:i_type => 40, :control_type => 0},
                               {:name => '调温',:i_type => 41, :control_type => 2},
@@ -25,9 +26,10 @@ class DevicesController < ApplicationController
                               {:name => '制冷',:i_type => 43, :control_type => 1},
                               {:name => '通风',:i_type => 44, :control_type => 1},
                               {:name => '除湿',:i_type => 45, :control_type => 1},
-                              {:name => '低速',:i_type => 46, :control_type => 1},
-                              {:name => '中速',:i_type => 47, :control_type => 1},
-                              {:name => '高速',:i_type => 48, :control_type => 1}])
+                              {:name => '低风',:i_type => 46, :control_type => 1},
+                              {:name => '中风',:i_type => 47, :control_type => 1},
+                              {:name => '高风',:i_type => 48, :control_type => 1}])
+                              # 微风 72 强风 76
       when 5 # 地暖
         @device.cams.build([{:name => '开关',:i_type => 50, :control_type => 0},
                               {:name => '调温',:i_type => 51, :control_type => 2}])
@@ -36,8 +38,8 @@ class DevicesController < ApplicationController
                               {:name => '低速',:i_type => 61, :control_type => 1},
                               {:name => '中速',:i_type => 62, :control_type => 1},
                               {:name => '高速',:i_type => 63, :control_type => 1}])
-      else 
-        puts '...'
+      else # 自定义
+        @device.cams.build([{:name => '自定义',:i_type => 80, :control_type => 0}])
       end
       
       respond_to do |format|

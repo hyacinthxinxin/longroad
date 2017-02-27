@@ -38,6 +38,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # 其他的库
+# postgresql
+gem 'pg'
+
 gem 'ipaddress'
 
 # bootstrap
@@ -48,9 +51,6 @@ gem 'bootstrap-will_paginate', '0.0.10'
 # Autoprefixer (autoprefixer-rails) is optional, but recommended. 
 # It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'
-
-# postgresql
-gem 'pg'
 
 gem 'devise'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
