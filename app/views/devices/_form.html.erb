@@ -37,16 +37,16 @@
 
     <div>
         <p><strong>控件列表:</strong></p>
+        <div class="links">
+            <ul>     
+                <li><%= link_to_add_association '添加开关', f, :cams, data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" }, wrap_object: Proc.new { |cam| cam.name = '开关'; cam.i_type = 80; cam.control_type = 0; cam } %></li>
+                <li><%= link_to_add_association '添加调光', f, :cams, data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" }, wrap_object: Proc.new { |cam| cam.name = '调光'; cam.i_type = 81; cam.control_type = 1; cam } %></li>
+            </ul>
+        </div>
         <div id="cams">
             <%= f.fields_for :cams do |cam_f| %>
                 <%= render "cam_fields", f: cam_f %>
             <% end %>
-            <div class="links">
-                <ul>     
-                    <li><%= link_to_add_association '添加开关', f, :cams, wrap_object: Proc.new { |cam| cam.i_type = 80; cam } %></li>
-                    <li><%= link_to_add_association '添加调光', f, :cams, wrap_object: Proc.new { |cam| cam.i_type = 80; cam } %></li>
-                </ul>
-            </div>
         </div>
     </div>
 
