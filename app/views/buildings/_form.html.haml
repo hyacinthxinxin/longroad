@@ -1,0 +1,11 @@
+= form_for(@building) do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name, '项目的名字'
+    = f.text_field :name, placeholder: "建筑的名字.", class: "form-control"
+  .form-group
+    = f.label :socket_address, '项目的端口地址'
+    = f.text_field :socket_address, placeholder: "建筑的地址.", class: "form-control"
+  %div
+    = f.submit "确定", class: "btn btn-primary btn-block"
+    = link_to "取消", buildings_path, class: "btn btn-default btn-block"

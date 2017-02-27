@@ -1,0 +1,34 @@
+%ol.breadcrumb
+  %li= link_to '我的所有项目', buildings_path
+  %li.active
+    = @building.name
+    (#{@building.socket_address})
+  = link_to '新建楼层', new_building_floor_path(@building), class: 'btn btn-info'
+#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+  - @building.floors.each do |floor|
+    .panel.panel-default
+      .panel-heading{:id => "heading_#{floor.id}", :role => "tab"}
+        .panel-title
+          %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_#{floor.id}"}
+            = floor.name
+            %b.caret
+          = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
+          = link_to '删除楼层', [floor.building, floor],                    |
+            method: :delete,                                            |
+            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' |
+          = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
+      .panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :id => "collapse_#{floor.id}", :role => "tabpanel"}
+        .panel-body
+          %table.table.table-striped
+            %tr
+              %th 房间区域名称
+              %th 房间区域图标
+              %th 操作
+            - floor.areas.each do |area|
+              %tr
+                %td= area.name
+                %td= image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image", class:"area_image")
+                %td
+                  = link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary'
+                  = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
+                  = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'

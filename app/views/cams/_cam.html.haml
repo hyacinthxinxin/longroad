@@ -1,0 +1,21 @@
+.form-inline
+  = form_for([cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam]) do |f|
+    = render 'shared/error_messages', object: f.object
+    %div
+      %p= f.label cam.name
+    .form-group
+      .input-group
+        = f.label '控制地址', class: 'input-group-addon'
+        = f.text_field :control_address, placeholder: "控制地址", class: 'form-control'
+    .form-group
+      .input-group
+        = f.label '反馈地址', class: 'input-group-addon'
+        = f.text_field :status_address, placeholder: "反馈地址", class: 'form-control'
+    .form-group
+      .input-group
+        = f.label '控制类型', class: 'input-group-addon'
+        = f.select(:control_type, [['1bit', 0], ['1byte', 1], ['2byte', 2]], {}, {class: 'form-control'})
+    .form-group
+      .input-group
+        = f.label '控制值', class: 'input-group-addon'
+        = f.text_field :control_value, placeholder: "控制值" , class: 'form-control'

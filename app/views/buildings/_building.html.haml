@@ -1,0 +1,10 @@
+.col-xs-4.col-sm-4.col-md-4
+  .thumbnail.building
+    = image_tag("LeControl.png", size: "72*72", alt: "Building Image")
+    .caption
+      %h3= building.name
+      %p= building.socket_address
+      .list_group
+        = link_to '详情', building_path(building), class: 'btn btn-primary'
+        = link_to '编辑', edit_building_path(building), class: 'btn btn-warning'
+        = link_to '删除', building_path(building), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

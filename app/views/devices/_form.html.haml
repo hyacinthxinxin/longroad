@@ -1,0 +1,39 @@
+= form_for [@device.area.floor.building, @device.area.floor, @device.area, @device] do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name, '设备名称'
+    = f.text_field :name, placeholder: "设备的名字.", class:'form-control'
+  / 是否是新建设备, 上一个版本的东西 不展示了
+  - if 0==1
+    .form-group
+      = f.label :i_type, '设备类型'
+      = f.select(:i_type, Device::DeviceTypes, {}, { class: 'form-control'})
+  - if @device.i_type == 0
+    #device_image_choose.form-group
+      = f.label :image_name, '图标'
+      %br/
+      = f.collection_radio_buttons( :image_name,                                         |
+        Device::DefaultImages,                                                           |
+        :first,                                                                          |
+        :last,                                                                           |
+        item_wrapper_tag: :div                                                           |
+        ) do |b|                                                                         |
+        b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_nor.png", |
+                                            size: '48x48',                               |
+                                            class: "device-image") }                     |
+        end                                                                              |
+  - else
+    = f.hidden_field :image_name, value: f.object.image_name
+  = f.hidden_field :i_type, value: f.object.i_type
+  %div
+    %p
+      %strong 控件列表:
+    .links
+      %ul
+        %li= link_to_add_association '添加开关', f, :cams, data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" }, wrap_object: Proc.new { |cam| cam.name = '开关'; cam.i_type = 80; cam.control_type = 0; cam }
+        %li= link_to_add_association '添加调光', f, :cams, data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" }, wrap_object: Proc.new { |cam| cam.name = '调光'; cam.i_type = 81; cam.control_type = 1; cam }
+    #cams
+      = f.fields_for :cams do |cam_f|
+        = render "cam_fields", f: cam_f
+  = f.submit "保存修改", class: "btn btn-primary btn-block"
+  = link_to '返回', building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area), class: "btn btn-default btn-block"
