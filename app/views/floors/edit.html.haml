@@ -1,3 +1,4 @@
-%h1 编辑楼层
-= form_for([@floor.building, @floor]) do |f|
-  = render partial: 'form', locals: { f: f }
+%ol.breadcrumb
+  %li= link_to t('back'), building_path(@building)
+  %li= t('.edit_floor')
+= render partial: 'form'

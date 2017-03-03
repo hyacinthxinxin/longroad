@@ -1,9 +1,0 @@
-%tr
-  %td= floor.name
-  %td= image_tag("LeControl.png", size: "36x36", alt: "Floor Image")
-  %td
-    = link_to '详情', building_floor_path(floor.building, floor) , class: 'btn btn-primary'
-    = link_to '编辑', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
-    = link_to '删除', [floor.building, floor],                      |
-      method: :delete,                                            |
-      data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' |

@@ -5,26 +5,38 @@ class AreasController < ApplicationController
     end
     
     def new
+      @building = Building.find(params[:building_id])
       @floor = Floor.find(params[:floor_id])
-      @area = @floor.areas.new
+      @area = @floor.areas.new(name:'新的房间',image_name: 'other')
     end
 
     def edit
+      @building = Building.find(params[:building_id])
+      @floor = Floor.find(params[:floor_id])
       @area = Area.find(params[:id])
     end
     
     def create
+      @building = Building.find(params[:building_id])
       @floor = Floor.find(params[:floor_id])
-      @area = @floor.areas.create(area_params)
-      redirect_to building_path(@area.floor.building)
+      @area = @floor.areas.new(area_params)
+      
+      if @area.save
+        flash[:success] = "Area Created!"
+        redirect_to building_path(@building)
+      else
+        render :new
+      end
     end
 
     def update
+      @building = Building.find(params[:building_id])
+      @floor = Floor.find(params[:floor_id])
       @area = Area.find(params[:id])
       if @area.update(area_params)
-        redirect_to building_path(@area.floor.building)
+        redirect_to building_path(@building)
       else
-        render 'edit'
+        render :edit
       end
     end
 

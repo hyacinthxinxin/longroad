@@ -4,6 +4,7 @@
     = @building.name
     (#{@building.socket_address})
   = link_to '新建楼层', new_building_floor_path(@building), class: 'btn btn-info'
+
 #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
   - @building.floors.each do |floor|
     .panel.panel-default
@@ -13,9 +14,7 @@
             = floor.name
             %b.caret
           = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
-          = link_to '删除楼层', [floor.building, floor],                    |
-            method: :delete,                                            |
-            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' |
+          = link_to '删除楼层', [floor.building, floor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
           = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
       .panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :id => "collapse_#{floor.id}", :role => "tabpanel"}
         .panel-body

@@ -1,2 +1,4 @@
-%h2 编辑设备
+%ol.breadcrumb
+  %li= link_to t('back'), building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
+  %li= t('.edit_device')
 = render 'form'

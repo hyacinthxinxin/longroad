@@ -1,3 +1,4 @@
-%h1 新建楼层
-= form_for([@building, @building.floors.build]) do |f|
-  = render partial: 'form', locals: { f: f }
+%ol.breadcrumb
+  %li= link_to t('back'), building_path(@building)
+  %li= t('.new_floor')
+= render partial: 'form'

@@ -1,0 +1,25 @@
+zh-CN:
+  back: 返回
+  add_cam: 添加控件
+  remove_cam: 删除控件
+  buildings:
+    new:
+      new_building: 新建项目
+    edit:     
+      edit_building: 编辑项目
+  floors:
+    new:
+      new_floor: 新建楼层
+    edit:
+      edit_floor: 编辑楼层
+  areas:
+    new:
+      new_area: 新建房间
+    edit:
+      edit_area: 编辑房间
+  devices:
+    new:
+      new_device: 新建设备
+    edit:
+      edit_device: 编辑设备
+    

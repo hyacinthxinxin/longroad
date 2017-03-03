@@ -1,0 +1,12 @@
+en:
+  back: Back
+  buildings:
+    new:
+      new_building: New Building
+    edit:     
+      edit_building: Edit Building
+  floors:
+    new:
+      new_floor: New Floor
+    edit:
+      edit_floor: Edit Floor

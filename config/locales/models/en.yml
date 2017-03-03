@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      floor: floor
+    attributes:
+      floor:
+         name: Name

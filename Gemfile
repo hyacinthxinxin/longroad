@@ -55,10 +55,11 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'devise_token_auth'
+gem 'httparty'
 
 gem "cocoon"
 gem 'jquery-ui-rails'
-
+gem 'simple_form'
 gem 'haml'
 
 group :development, :test do

@@ -1,0 +1,26 @@
+zh-CN:
+  activerecord:
+    models:
+      building: 建筑
+      floor: 楼层
+      area: 房间
+      device: 设备
+      cam: 控件
+    attributes:
+      building:
+        name: 名称
+        socket_address: 端口地址
+      floor:
+        name: 名称
+      area:
+        name: 名称
+        image_name: 图片
+      device:
+        name: 名称
+        image_name: 图片
+      cam:
+        name: 名称
+        control_address: 控制地址
+        status_address: 反馈地址
+        control_type: 数据类型
+        control_value: 控制值

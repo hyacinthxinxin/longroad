@@ -23,7 +23,7 @@ class BuildingsController < ApplicationController
 			flash[:success] = "Building created!"
 			redirect_to root_url
 		else
-			render 'new'
+			render :new
 		end
 	end
 
@@ -32,7 +32,7 @@ class BuildingsController < ApplicationController
 		if @building.update(building_params)
 			redirect_to buildings_path
 		else
-			render 'edit'
+			render :edit
 		end
 	end
 

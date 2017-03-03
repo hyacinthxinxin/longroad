@@ -12,7 +12,7 @@ class FloorsController < ApplicationController
     
     def new
       @building = Building.find(params[:building_id])
-      @floor = @building.floors.new
+      @floor = @building.floors.new(name:'新的楼层')
     end
 
     def edit
@@ -22,8 +22,13 @@ class FloorsController < ApplicationController
 
     def create
       @building = Building.find(params[:building_id])
-      @floor = @building.floors.create(floor_params)
-      redirect_to building_path(@building)
+      @floor = @building.floors.new(floor_params)
+      if @floor.save
+        flash[:success] = "Floor Created!"
+        redirect_to building_path(@building)
+      else
+        render :new
+      end
     end
 
     def update

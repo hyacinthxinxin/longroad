@@ -3,7 +3,8 @@
   %li= link_to @area.floor.building.name+'('+@area.floor.building.socket_address+')', building_path(@area.floor.building)
   %li.active
     = @area.floor.name
-    \-&gt;#{@area.name}
+    \-&gt;
+    = @area.name
   %li.dropdown
     %a.dropdown-toggle.btn.btn-info{"data-toggle" => "dropdown", :href => "#"}
       新建设备

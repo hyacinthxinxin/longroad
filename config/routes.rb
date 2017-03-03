@@ -2,10 +2,18 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   devise_for :users
+
   namespace :api do
-    scope :v1 do
+    namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
     end
+  end
+
+  namespace :api do
+    namespace :v2 do
+      mount_devise_token_auth_for 'User', at: 'auth'
+      resources :buildings 
+    end    
   end
   
   get  '/',    to: 'static_pages#home'

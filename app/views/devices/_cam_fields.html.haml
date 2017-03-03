@@ -1,31 +1,15 @@
-.form-inline.nested-fields
-  .form-group.field
-    .input-group
-      = f.label '控件名称', class: 'input-group-addon'
-      = f.text_field :name, placeholder: "名称", class: 'form-control'
-  .form-group.field
-    .input-group
-      = f.label '控制地址', class: 'input-group-addon'
-      = f.text_field :control_address, placeholder: "控制地址", class: 'form-control'
-  .form-group.field
-    .input-group
-      = f.label '反馈地址', class: 'input-group-addon'
-      = f.text_field :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.i_type==0
-  .form-group.field
-    .input-group
-      = f.label '控制类型', class: 'input-group-addon'
-      = f.select(:control_type, [['1bit', 0], ['1byte', 1], ['2byte', 2]], {}, {class: 'form-control'})
+.nested-fields.col-sm-3
+  = f.input :name, placeholder: "名称", class: 'form-control'
+  = f.input :control_address, placeholder: "控制地址", class: 'form-control'
+  = f.input :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.i_type==0
+
+  = f.input :control_type, collection: [['1bit', 0], ['1byte', 1], ['2byte', 2]]
+
   = f.hidden_field :i_type, value: f.object.i_type
   = f.hidden_field :status_value, value: f.object.status_value
   = f.hidden_field :min_control_value, value: f.object.min_control_value
   = f.hidden_field :max_control_value, value: f.object.max_control_value
   = f.hidden_field :min_status_value, value: f.object.min_status_value
   = f.hidden_field :max_status_value, value: f.object.max_status_value
-  .form-group.field
-    .input-group
-      = f.label '控制数值', class: 'input-group-addon'
-      = f.text_field :control_value, placeholder: "控制值" , class: 'form-control'
-  .form-group.field
-    .input-group
-      = link_to_remove_association "删除控件", f, data: {confirm: "Are You Sure to Delete #{f.object.name}控件?"},class: 'form-control btn btn-danger'
-%br/
+  = f.input :control_value, placeholder: "控制值"
+  = link_to_remove_association t('remove_cam'), f, class:'btn btn-danger fa fa-user-plus', data: {confirm: "Are You Sure to Delete #{f.object.name}控件?"}

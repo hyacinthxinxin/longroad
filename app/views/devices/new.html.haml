@@ -1,3 +1,4 @@
-%h2
-  新建#{Device::DeviceTypesName[@device.i_type]}
+%ol.breadcrumb
+  %li= link_to t('back'), building_floor_area_path(@device.area.floor.building, @device.area.floor, @device.area)
+  %li= t('.new_device')
 = render 'form'

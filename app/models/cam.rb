@@ -8,6 +8,7 @@ class Cam < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
   validates :control_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
   validates :status_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
+  validates :control_type, presence: true
 
   default_scope -> { order(i_type: :asc) }
 

@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   
   def index
+    @hello = "hello"
     render 'home'
   end  
   
