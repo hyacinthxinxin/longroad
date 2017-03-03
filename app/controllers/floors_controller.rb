@@ -48,6 +48,10 @@ class FloorsController < ApplicationController
       redirect_to building_path(@building)
     end
 
+    def move_floor_higher
+      Floor.find(params[:id]).move_higher
+    end
+
     private
 
       def floor_params

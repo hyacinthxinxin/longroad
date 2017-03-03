@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'api/v1/project', to: 'api#project'
   get 'api/v1/buildings', to: 'api#buildings'
   
+  post 'move_floor_higher', to: 'floors#move_floor_higher'
+
   resources :buildings do
     resources :floors do 
       resources :areas do

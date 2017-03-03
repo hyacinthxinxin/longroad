@@ -2,7 +2,9 @@ class Building < ApplicationRecord
       belongs_to :user
       default_scope -> { order(created_at: :desc) }
       validates :user_id, presence: true
-      has_many :floors, dependent: :destroy
+
+      has_many :floors, -> { order("position ASC") }, dependent: :destroy
+      
       validates :name, presence: true, length: { minimum: 2 }
 
       validates :socket_address, presence: true, format: { with: Resolv::IPv4::Regex }
