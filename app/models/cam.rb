@@ -5,12 +5,14 @@ class Cam < ApplicationRecord
   VALID_ADDRESS_REGEX = /\A#{first_address_block}\/#{second_address_block}\/#{third_address_block}\z/
 
   belongs_to :device
+  acts_as_list scope: :device
+
   validates :name, presence: true, length: { minimum: 2 }
   validates :control_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
   validates :status_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
   validates :control_type, presence: true
 
-  default_scope -> { order(i_type: :asc) }
+  # default_scope -> { order(i_type: :asc) }
 
   after_initialize :init
   def init

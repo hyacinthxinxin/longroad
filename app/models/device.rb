@@ -11,7 +11,8 @@ class Device < ApplicationRecord
   DeviceTypesName = [['场景', 0], ['灯光', 1], ['灯光+调光',2],['窗帘',3], ['空调', 4],['地暖', 5],['新风', 6]]
 
   belongs_to :area
-  has_many :cams, dependent: :destroy, inverse_of: :device
+  acts_as_list scope: :area
+  has_many :cams, -> { order("position ASC") }, dependent: :destroy, inverse_of: :device
   accepts_nested_attributes_for :cams, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true, length: { minimum: 2 }

@@ -12,4 +12,8 @@
   = f.hidden_field :min_status_value, value: f.object.min_status_value
   = f.hidden_field :max_status_value, value: f.object.max_status_value
   = f.input :control_value, placeholder: "控制值"
+
+  = link_to '<i class="glyphicon glyphicon-triangle-top"></i>'.html_safe, { action: 'edit', method: 'move_higher', item_name: f.object, move_type: 'cam' }, class: 'btn btn-success', disabled: f.object.first?
+  = link_to '<i class="glyphicon glyphicon-triangle-bottom"></i>'.html_safe, { action: 'edit', method: 'move_lower', item_name: f.object, move_type: 'cam' }, class: 'btn btn-success', disabled: f.object.last?
+
   = link_to_remove_association t('remove_cam'), f, class:'btn btn-danger fa fa-user-plus', data: {confirm: "Are You Sure to Delete #{f.object.name}控件?"}

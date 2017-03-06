@@ -67,6 +67,16 @@ class DevicesController < ApplicationController
 
     def edit
       @device = Device.find_by(id:params[:id])
+      sort_item
+    end
+
+    def sort_item
+      if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:item_name] =~ /^\d+$/
+        case params[:move_type] 
+        when 'cam'
+        Cam.find(params[:item_name]).send(params[:method])
+        end
+      end
     end
 
     def update

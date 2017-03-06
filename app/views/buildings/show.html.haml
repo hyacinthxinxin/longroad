@@ -16,8 +16,7 @@
           = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
           = link_to '删除楼层', [floor.building, floor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
           = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
-          = link_to '上移', move_floor_higher_path(floor), method: :post, class: 'btn btn-info'
-          = link_to '下移', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
+          = render partial: 'shared/move', locals: {item: floor, move_type: 'floor'}
 
       .panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :id => "collapse_#{floor.id}", :role => "tabpanel"}
         .panel-body
@@ -34,3 +33,4 @@
                   = link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary'
                   = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
                   = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'
+                  = render partial: 'shared/move', locals: {item: area, move_type: 'area'}

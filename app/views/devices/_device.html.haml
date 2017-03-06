@@ -12,3 +12,4 @@
   %td
     = link_to '编辑设备', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-warning'
     = link_to '删除', [device.area.floor.building, device.area.floor, device.area, device], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+    = render partial: 'shared/move', locals: {item: device, move_type: 'device'}
