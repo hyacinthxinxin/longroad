@@ -6,4 +6,7 @@ class Floor < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2 }
 
+  amoeba do
+    enable
+  end
 end

@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   resources :buildings do
     resources :floors do 
       resources :areas do
+        post :dup_area
         resources :devices do
+          post :dup_device
           resources :cams do
             end
         end

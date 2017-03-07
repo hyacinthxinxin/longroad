@@ -8,11 +8,12 @@
 #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
   - @building.floors.each do |floor|
     .panel.panel-default
-      .panel-heading{:id => "heading_#{floor.id}", :role => "tab"}
-        .panel-title
+      .panel-heading.clearfix{:id => "heading_#{floor.id}", :role => "tab"}
+        .panel-title.pull-left
           %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_#{floor.id}"}
             = floor.name
             %b.caret
+        .btn-group.pull-right
           = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
           = link_to '删除楼层', [floor.building, floor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
           = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
@@ -30,7 +31,9 @@
                 %td= area.name
                 %td= image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image", class:"area_image")
                 %td
-                  = link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary'
-                  = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
-                  = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'
-                  = render partial: 'shared/move', locals: {item: area, move_type: 'area'}
+                  .btn-group.pull-left
+                    = link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary'
+                    = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
+                    = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'
+                    = render partial: 'shared/move', locals: {item: area, move_type: 'area'}
+                    = link_to '复制房间', building_floor_area_dup_area_path(area.floor.building, area.floor, area), method: :post, area_id: area.id,  class: 'btn btn-default'

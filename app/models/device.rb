@@ -28,4 +28,9 @@ class Device < ApplicationRecord
       end
     end
 
+  amoeba do
+    enable
+    prepend :name => "Copy of "
+  end
+  
 end

@@ -79,6 +79,13 @@ class DevicesController < ApplicationController
       end
     end
 
+    def dup_device
+      device = Device.find_by(id:params[:device_id])
+      device_copy = device.amoeba_dup
+      device_copy.save
+      redirect_to request.referrer || root_url
+    end
+
     def update
       @device = Device.find_by(id:params[:id])
       if @device.update_attributes(device_params)
@@ -101,5 +108,6 @@ class DevicesController < ApplicationController
       def device_params
         params.require(:device).permit(:name, :image_name, :i_type, cams_attributes: [:id, :i_type, :name, :control_address, :status_address, :control_type, :control_value, :status_value, :min_control_value, :max_control_value, :min_status_value, :max_status_value, :_destroy])
       end
+
 
 end

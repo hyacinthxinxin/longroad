@@ -13,5 +13,9 @@ class Building < ApplicationRecord
       def default_values
         self.socket_port ||= 4196
       end
+
+      amoeba do
+        enable
+      end
       
 end

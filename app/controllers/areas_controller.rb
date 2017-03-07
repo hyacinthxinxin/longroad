@@ -6,12 +6,16 @@ class AreasController < ApplicationController
     end
     
     def sort_item
-      if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:item_name] =~ /^\d+$/
-        case params[:move_type] 
-        when 'device'
-        Device.find(params[:item_name]).send(params[:method])
-        end
+      if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:device_id] =~ /^\d+$/
+        Device.find(params[:device_id]).send(params[:method])
       end
+    end
+
+    def dup_area
+      area = Area.find_by(id:params[:area_id])
+      area_copy = area.amoeba_dup
+      area_copy.save
+      redirect_to request.referrer || root_url
     end
 
     def new
@@ -63,4 +67,5 @@ class AreasController < ApplicationController
         params.require(:area).permit(:name, :image_name)
       end
     
+
 end

@@ -10,5 +10,9 @@ class Area < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
   validates :image_name, presence: true
   
+  amoeba do
+    enable
+    prepend :name => "Copy of "
+  end
 
 end
