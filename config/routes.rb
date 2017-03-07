@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v2 do
       mount_devise_token_auth_for 'User', at: 'auth'
-      resources :buildings 
+      resources :buildings
+      
+      get :building_detail, to: 'buildings#building_detail'
     end    
   end
   
