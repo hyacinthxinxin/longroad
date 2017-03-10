@@ -6,7 +6,7 @@ class ApiController < ApplicationController
       render json: user.buildings.all
     else
       render json: {
-          result => false
+        result => false
       }
     end
   end
@@ -16,8 +16,12 @@ class ApiController < ApplicationController
   end
 
   def project
-      @building = Building.find_by(id: params[:building_id]).as_json(include: {floors: {include: {areas: {include: {devices: {include: :cams}}}}}})
-      render json: @building
+    @building = Building.find_by(id: params[:building_id])
+                          .as_json(include:
+                                  {floors: {include:
+                                  {areas: {include:
+                                  {devices: {include: :cams}}}}}})
+    render json: @building
   end
 
 end

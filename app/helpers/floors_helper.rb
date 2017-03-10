@@ -1,3 +1,2 @@
 module FloorsHelper
-
 end

@@ -1,5 +1,5 @@
 module DevicesHelper
-    def need_image_choose(i_type)
-      i_type == 0 ? true: false
-    end
+  def need_image_choose(i_type)
+    i_type.zero?
+  end
 end
