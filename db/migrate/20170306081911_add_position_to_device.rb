@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddPositionToDevice < ActiveRecord::Migration[5.0]
   def change
     add_column :devices, :position, :integer

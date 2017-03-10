@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -28,17 +29,17 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default :charser => 'utf-8'
+  config.action_mailer.default charser: 'utf-8'
   config.action_mailer.smtp_settings = {
-                      :address => "smtp.163.com", 
-                      :port => 25,
-                      :domain => "163.com",
-                      :authentication => 'plain',
-                      :enable_starttls_auto => true,
-                      :user_name => "fanxin0202@163.com",
-                      :password => "LI,xiaoting1234"
+    address: 'smtp.163.com',
+    port: 25,
+    domain: '163.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: 'fanxin0202@163.com',
+    password: 'LI,xiaoting1234'
   }
 
   # Print deprecation notices to the Rails logger.

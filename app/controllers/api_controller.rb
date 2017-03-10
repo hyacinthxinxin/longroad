@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ApiController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
 
@@ -17,11 +18,10 @@ class ApiController < ApplicationController
 
   def project
     @building = Building.find_by(id: params[:building_id])
-                          .as_json(include:
-                                  {floors: {include:
-                                  {areas: {include:
-                                  {devices: {include: :cams}}}}}})
+                        .as_json(include:
+                                  { floors: { include:
+                                  { areas: { include:
+                                  { devices: { include: :cams } } } } } })
     render json: @building
   end
-
 end

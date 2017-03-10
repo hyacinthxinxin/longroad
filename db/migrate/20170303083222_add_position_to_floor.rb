@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddPositionToFloor < ActiveRecord::Migration[5.0]
   def change
     add_column :floors, :position, :integer

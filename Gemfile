@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 source 'https://gems.ruby-china.org/'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -45,22 +45,22 @@ gem 'ipaddress'
 
 # bootstrap
 gem 'bootstrap-sass', '3.3.7'
-gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'will_paginate',           '3.1.0'
 
-# Autoprefixer (autoprefixer-rails) is optional, but recommended. 
+# Autoprefixer (autoprefixer-rails) is optional, but recommended.
 # It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'
 
 gem 'devise'
-gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'devise_token_auth'
 gem 'httparty'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
 
-gem "cocoon"
+gem 'cocoon'
+gem 'haml'
 gem 'jquery-ui-rails'
 gem 'simple_form'
-gem 'haml'
 
 gem 'acts_as_list'
 gem 'amoeba'
@@ -73,13 +73,12 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'erb2haml'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "erb2haml"
-  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

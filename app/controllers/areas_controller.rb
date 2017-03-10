@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AreasController < ApplicationController
   def show
     @floor = Floor.find(params[:floor_id])
@@ -7,8 +8,13 @@ class AreasController < ApplicationController
 
   def sort_item
     return unless %w(move_lower move_higher move_to_top move_to_bottom)
-                  .include?(params[:method]) && params[:device_id] =~ /^\d+$/
-    Device.find(params[:device_id]).send(params[:method])
+                  .include?(params[:method])
+    case params[:move_type]
+    when 'device'
+      Device.find(params[:device_id]).send(params[:method])
+    when 'cam'
+      Cam.find(params[:cam_id]).send(params[:method])
+    end
   end
 
   def dup_area

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BuildingsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new]
 

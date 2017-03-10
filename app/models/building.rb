@@ -1,21 +1,21 @@
+# frozen_string_literal: true
 class Building < ApplicationRecord
-      belongs_to :user
-      default_scope -> { order(created_at: :desc) }
-      validates :user_id, presence: true
+  belongs_to :user
+  default_scope -> { order(created_at: :desc) }
+  validates :user_id, presence: true
 
-      has_many :floors, -> { order("position ASC") }, dependent: :destroy
-      
-      validates :name, presence: true, length: { minimum: 2 }
+  has_many :floors, -> { order('position ASC') }, dependent: :destroy
 
-      validates :socket_address, presence: true, format: { with: Resolv::IPv4::Regex }
+  validates :name, presence: true, length: { minimum: 2 }
 
-      before_save :default_values
-      def default_values
-        self.socket_port ||= 4196
-      end
+  validates :socket_address, presence: true, format: { with: Resolv::IPv4::Regex }
 
-      amoeba do
-        enable
-      end
-      
+  before_save :default_values
+  def default_values
+    self.socket_port ||= 4196
+  end
+
+  amoeba do
+    enable
+  end
 end

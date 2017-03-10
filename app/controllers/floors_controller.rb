@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class FloorsController < ApplicationController
-
   def index
     @building = Building.find(params[:building_id])
     @floors = @building.floors
@@ -57,5 +57,4 @@ class FloorsController < ApplicationController
   def floor_params
     params.require(:floor).permit(:name, :image_name)
   end
-
 end

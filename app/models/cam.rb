@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Cam < ApplicationRecord
   first_address_block = /\d{,1}|1[0-5]/
   second_address_block = /[0-7]/
@@ -25,6 +26,4 @@ class Cam < ApplicationRecord
     self.min_status_value ||= 0
     self.max_status_value ||= 0
   end
-
-
 end

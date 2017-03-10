@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
   root 'static_pages#index'
 
@@ -13,12 +14,12 @@ Rails.application.routes.draw do
     namespace :v2 do
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :buildings
-      
+
       get :building_detail, to: 'buildings#building_detail'
-    end    
+    end
   end
-  
-  get  '/',    to: 'static_pages#home'
+
+  get  '/', to: 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
@@ -27,16 +28,15 @@ Rails.application.routes.draw do
   get 'api/v1/buildings', to: 'api#buildings'
 
   resources :buildings do
-    resources :floors do 
+    resources :floors do
       resources :areas do
         post :dup_area
         resources :devices do
           post :dup_device
           resources :cams do
-            end
+          end
         end
-      end 
+      end
     end
   end
-
 end
