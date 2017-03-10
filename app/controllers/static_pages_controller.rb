@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 class StaticPagesController < ApplicationController
   def index
-    @hello = 'hello'
-    render 'home'
+    render :home
   end
 
   def home

@@ -1,14 +1,15 @@
 # frozen_string_literal: true
+# AreasController:
 class AreasController < ApplicationController
   def show
     @floor = Floor.find(params[:floor_id])
     @area = @floor.areas.find(params[:id])
+    return unless %w(move_lower move_higher move_to_top move_to_bottom)
+                  .include?(params[:method])
     sort_item
   end
 
   def sort_item
-    return unless %w(move_lower move_higher move_to_top move_to_bottom)
-                  .include?(params[:method])
     case params[:move_type]
     when 'device'
       Device.find(params[:device_id]).send(params[:method])
@@ -40,7 +41,6 @@ class AreasController < ApplicationController
     @building = Building.find(params[:building_id])
     @floor = Floor.find(params[:floor_id])
     @area = @floor.areas.new(area_params)
-
     if @area.save
       flash[:success] = 'Area Created!'
       redirect_to building_path(@building)
