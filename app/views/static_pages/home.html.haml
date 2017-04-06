@@ -1,6 +1,17 @@
 - provide(:title, "Home")
-.center.jumbotron  
-  %h1 Welcome to 乐控 App
+.center.jumbotron
+  %h1 Welcome to leControl
   %p.le-notice 添加和删除控件的功能可测试，暂时请勿做正式使用，等待更新...
-  %h3 乐控app store下载
-  = image_tag("QR_code_le_control_app_store.png", class: "")
+  .row
+    .col-md-6
+      %h3
+        乐控
+        = link_to('App Store', "https://itunes.apple.com/cn/app/%E4%B9%90%E6%8E%A7/id1195773706?mt=8")
+        下载
+      = image_tag("QR_code_le_control_app_store.png", size:"280x280", class: "")
+    .col-md-6
+      %h3
+        乐控
+        = link_to('Android', "https://fir.im/hejc")
+        下载
+      = image_tag("QR_code_le_control_android.png", size:"280x280", class: "")
