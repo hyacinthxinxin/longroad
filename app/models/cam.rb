@@ -8,7 +8,7 @@ class Cam < ApplicationRecord
   belongs_to :device
   acts_as_list scope: :device
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :name, presence: true, length: { minimum: 1 }
   validates :control_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
   validates :status_address, presence: true, format: { with: VALID_ADDRESS_REGEX }
   validates :control_type, presence: true
@@ -26,4 +26,13 @@ class Cam < ApplicationRecord
     self.min_status_value ||= 0
     self.max_status_value ||= 0
   end
+
+  def disableStatusAddressChange
+    [0, 30, 31, 32, 33, 34].include?(i_type)
+  end
+
+  def disableControlValueChange
+    [20, 21, 40, 41, 50, 51, 70].include?(i_type)
+  end
+
 end

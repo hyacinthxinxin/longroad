@@ -1,9 +1,12 @@
-.nested-fields.col-sm-3
-  = f.input :name, placeholder: "名称", class: 'form-control'
-  = f.input :control_address, placeholder: "控制地址", class: 'form-control'
-  = f.input :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.i_type==0
-
-  = f.input :control_type, collection: [['1bit', 0], ['1byte', 1], ['2byte', 2]]
+.nested-fields.row
+  .col-md-3
+    = f.input :name, placeholder: "名称", class: 'form-control'
+  .col-md-2
+    = f.input :control_address, placeholder: "控制地址", class: 'form-control'
+  .col-md-2
+    = f.input :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.disableStatusAddressChange
+  .col-md-2
+    = f.input :control_type, collection: [['1bit', 0], ['1byte', 1], ['2byte', 2]]
 
   = f.hidden_field :i_type, value: f.object.i_type
   = f.hidden_field :status_value, value: f.object.status_value
@@ -11,6 +14,9 @@
   = f.hidden_field :max_control_value, value: f.object.max_control_value
   = f.hidden_field :min_status_value, value: f.object.min_status_value
   = f.hidden_field :max_status_value, value: f.object.max_status_value
-  = f.input :control_value, placeholder: "控制值"
-
-  = link_to_remove_association t('remove_cam'), f, class:'btn btn-danger fa fa-user-plus', data: {confirm: "Are You Sure to Delete #{f.object.name}控件?"}
+  .col-md-2
+    = f.input :control_value, placeholder: "控制值", label: "值", disabled: f.object.disableControlValueChange
+  .col-md-1
+    = link_to_remove_association f, class:'btn btn-danger', data: {confirm: "确定删除 #{f.object.name} 控件?"} do
+      %i.fa.fa-trash X
+  %br/

@@ -1,21 +1,23 @@
 = simple_form_for [@device.area.floor.building, @device.area.floor, @device.area, @device] do |f|
-  = render partial: 'add_cam_dropdown', locals: { f:f, cams: f.object.cams }, wrapper_class: 'breadcrumb'
-  
-  = f.input :name
-  
-  - if @device.i_type == 0
-    = f.label :image_name
-    %br/
-    = f.collection_radio_buttons(:image_name, Device::DefaultImages, :first, :last, item_wrapper_tag: :span) do |b|                                                                         
-      = b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_nor.png", size: '48x48', class: "device-image") }                                                                            
-  - else
-    = f.hidden_field :image_name, value: f.object.image_name
-  
-  = f.hidden_field :i_type, value: f.object.i_type
-  %div
-    %p
-      %strong 控件列表:
-    #cams
-      = f.simple_fields_for :cams do |cam_f|
-        = render "cam_fields", f: cam_f
-  = f.button :submit, class: "btn-primary btn-block"
+  .row
+    .col-md-9
+      = f.input :name
+      - if @device.i_type == 0
+        = f.label :image_name
+        %br/
+        = f.collection_radio_buttons(:image_name, Device::DefaultImages, :first, :last, item_wrapper_tag: :span) do |b|
+          = b.label { b.radio_button+image_tag("le_icons/mode_icon/mode_#{b.value}_nor.png", size: '48x48', class: "device-image") }
+      - else
+        = f.hidden_field :image_name, value: f.object.image_name
+
+      = f.hidden_field :i_type, value: f.object.i_type
+      %div
+        %p
+          %strong 控件列表:
+        #cams
+          = f.simple_fields_for :cams do |cam_f|
+            = render "cam_fields", f: cam_f
+      %br/
+      = f.button :submit, class: "btn-primary btn-block"
+    .col-md-3
+      = render partial: 'add_cam_fields', locals: { f:f, cams: f.object.cams }, wrapper_class: 'breadcrumb'

@@ -32,4 +32,13 @@ class Device < ApplicationRecord
     enable
     prepend name: 'Copy of '
   end
+
+  def getCamCatrgoriesByCamType
+    case i_type
+    when 0
+      CamCategory.all.where(camType: [0])
+    when 1
+      CamCategory.all.where(camType: [20, 21])
+    end
+  end
 end
