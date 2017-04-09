@@ -8,7 +8,6 @@ class Building < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2 }
 
-  require 'ipaddress'
   validates :socket_address, presence: true, format: { with: Resolv::IPv4::Regex }
 
   before_save :default_values
