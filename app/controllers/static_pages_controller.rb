@@ -4,9 +4,9 @@ class StaticPagesController < ApplicationController
     render :home
   end
 
-  # def home
-  #   redirect_to buildings_path if user_signed_in?
-  # end
+  def home
+    redirect_to buildings_path if user_signed_in?
+  end
 
   def help; end
 

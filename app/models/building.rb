@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'ipaddress'
 class Building < ApplicationRecord
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
