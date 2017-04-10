@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# BuildingsController:
 class BuildingsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new]
 
@@ -25,7 +24,7 @@ class BuildingsController < ApplicationController
   end
 
   def new
-    @building = current_user.buildings.new
+    @building = current_user.buildings.build
   end
 
   def edit
@@ -33,11 +32,12 @@ class BuildingsController < ApplicationController
   end
 
   def create
-    @building = current_user.buildings.new(building_params)
+    @building = current_user.buildings.build(building_params)
     if @building.save
-      flash[:success] = 'Building created!'
-      redirect_to root_url
+      flash[:success] = '项目创建成功！'
+      redirect_to request.referrer || root_url
     else
+      flash[:error] = '项目创建失败！'
       render :new
     end
   end
@@ -45,17 +45,23 @@ class BuildingsController < ApplicationController
   def update
     @building = current_user.buildings.find(params[:id])
     if @building.update(building_params)
+      flash[:success] = '项目更新成功！'
       redirect_to buildings_path
     else
+      flash[:error] = '项目更新失败！'
       render :edit
     end
   end
 
   def destroy
     @building = current_user.buildings.find(params[:id])
-    @building.destroy
-    flash[:success] = 'Building deleted'
-    redirect_to request.referrer || root_url
+    if  @building.destroy
+      flash[:success] = '项目删除成功！'
+      redirect_to buildings_path
+    else
+      flash[:error] = '项目删除失败！'
+      redirect_to request.referrer || root_url
+    end
   end
 
   private
