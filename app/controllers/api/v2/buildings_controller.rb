@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-class Api::V2::BuildingsController < ApiController
+class Api::V2::BuildingsController < ActionController::API
+  include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :authenticate_user!
-
   def index
     if current_user.id.to_s == params[:user_id].to_s
       render json: current_user.buildings.all
