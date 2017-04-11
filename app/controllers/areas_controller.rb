@@ -4,7 +4,6 @@ class AreasController < ApplicationController
   def show
     @floor = Floor.find(params[:floor_id])
     @area = @floor.areas.find(params[:id])
-    @current_device_type = params[:current_device_type]
   end
 
   def new

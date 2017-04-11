@@ -1,9 +1,9 @@
 %tr
   %td
     = image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image")
-    = link_to area.name, building_floor_area_path(area.floor.building, area.floor, area)
+    = area.name
   %td
-    = link_to "设备数量#{area.devices.count}", building_floor_area_path(area.floor.building, area.floor, area, current_device_type: 1)
+    = link_to "设备数量#{area.devices.count}", building_floor_area_path(area.floor.building, area.floor, area)
   %td
     .btn-group.pull-right
       = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
