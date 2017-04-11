@@ -8,19 +8,6 @@ class BuildingsController < ApplicationController
 
   def show
     @building = current_user.buildings.find(params[:id])
-    return unless %w(move_lower move_higher move_to_top move_to_bottom)
-                  .include?(params[:method]) &&
-                  params[:item_name] =~ /^\d+$/
-    sort_item
-  end
-
-  def sort_item
-    case params[:move_type]
-    when 'floor'
-      Floor.find(params[:item_name]).send(params[:method])
-    when 'area'
-      Area.find(params[:item_name]).send(params[:method])
-    end
   end
 
   def new

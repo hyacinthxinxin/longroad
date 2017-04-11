@@ -1,39 +1,35 @@
 %ol.breadcrumb
   %li= link_to '我的所有项目', buildings_path
   %li.active
-    = @building.name
-    (#{@building.socket_address})
+    = succeed '**' do
+      = @building.name
+    = succeed ' **' do
+      = @building.socket_address
   = link_to '新建楼层', new_building_floor_path(@building), class: 'btn btn-info'
 
-#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-  - @building.floors.each do |floor|
-    .panel.panel-default
-      .panel-heading.clearfix{:id => "heading_#{floor.id}", :role => "tab"}
-        .panel-title.pull-left
-          %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_#{floor.id}"}
-            = floor.name
-            %b.caret
-        .btn-group.pull-right
-          = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
-          = link_to '删除楼层', [floor.building, floor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-          = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
-          = render partial: 'shared/move', locals: {item: floor, move_type: 'floor'}
+- @building.floors.each do |floor|
+  .panel.panel-default
+    .panel-heading.clearfix{:id => "heading_#{floor.id}", :role => "tab"}
+      .panel-title.pull-left
+        %a{"aria-expanded": "true", "data-toggle": "collapse", "aria-controls": "collapse_#{floor.id}",href: "#collapse_#{floor.id}"}
+          = floor.name
+          %i.caret
+        %small
+          \-->房间数量:
+          = floor.areas.count
+      .btn-group
+        = link_to '新建房间', new_building_floor_area_path(floor.building, floor), class: 'btn btn-info'
+      .btn-group.pull-right
+        = link_to '编辑楼层', edit_building_floor_path(floor.building, floor), class: 'btn btn-warning'
+        = link_to '删除楼层', [floor.building, floor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+        = link_to building_floor_move_higher_path(floor.building, floor), method: :put, class: 'btn btn-success', disabled: floor.first? do
+          %i.glyphicon.glyphicon-triangle-top
+        = link_to building_floor_move_lower_path(floor.building, floor), method: :put, class: 'btn btn-success', disabled: floor.last? do
+          %i.glyphicon.glyphicon-triangle-bottom
 
-      .panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :id => "collapse_#{floor.id}", :role => "tabpanel"}
-        .panel-body
-          %table.table.table-striped
-            %tr
-              %th 房间区域名称
-              %th 房间区域图标
-              %th 操作
+    .panel-collapse.collapse.in{id: "collapse_#{floor.id}"}
+      .panel-body
+        %table.table.table-bordered.table-hover
+          %tbody
             - floor.areas.each do |area|
-              %tr
-                %td= area.name
-                %td= image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image", class:"area_image")
-                %td
-                  .btn-group.pull-left
-                    = link_to '设备列表', building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-primary'
-                    = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
-                    = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'
-                    = render partial: 'shared/move', locals: {item: area, move_type: 'area'}
-                    = link_to '复制房间', building_floor_area_dup_area_path(area.floor.building, area.floor, area), method: :post, area_id: area.id,  class: 'btn btn-default'
+              = render partial: 'areas/area', locals: {area: area}

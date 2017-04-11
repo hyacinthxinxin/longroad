@@ -43,33 +43,13 @@
   .tab-content
     #device-scene.tab-pane.active{:role => "tabpanel"}
       %table.table.table-striped
-        %tr
-          %th 设备名称
-          %th 设备图标
-          %th 设备控件
-          %th 操作
         = render device_with_type(@area, [0])
     #device-light.tab-pane{:role => "tabpanel"}
       %table.table.table-striped
-        %tr
-          %th 设备名称
-          %th 设备图标
-          %th 设备控件
-          %th 操作
         = render device_with_type(@area, [1,2])
     #device-curtain.tab-pane{:role => "tabpanel"}
       %table.table.table-striped
-        %tr
-          %th 设备名称
-          %th 设备图标
-          %th 设备控件
-          %th 操作
         = render device_with_type(@area, [3])
     #device-temp.tab-pane{:role => "tabpanel"}
       %table.table.table-striped
-        %tr
-          %th 设备名称
-          %th 设备图标
-          %th 设备控件
-          %th 操作
         = render device_with_type(@area, [4,5,6])

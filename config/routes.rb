@@ -29,11 +29,19 @@ Rails.application.routes.draw do
 
   resources :buildings do
     resources :floors do
+      put "move_higher", to: "floors#move_higher"
+      put "move_lower", to: "floors#move_lower"
       resources :areas do
+        put "move_higher", to: "areas#move_higher"
+        put "move_lower", to: "areas#move_lower"
         post :dup_area
         resources :devices do
+          put "move_higher", to: "devices#move_higher"
+          put "move_lower", to: "devices#move_lower"
           post :dup_device
           resources :cams do
+            put "move_higher", to: "cams#move_higher"
+            put "move_lower", to: "cams#move_lower"
           end
         end
       end

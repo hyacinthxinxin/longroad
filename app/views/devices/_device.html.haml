@@ -1,6 +1,7 @@
 %tr
-  %td= device.name
   %td= image_tag("le_icons/mode_icon/mode_#{device.image_name}_sel.png", size: "48x48", alt: "Device Image", class: 'device-image')
+  %td
+    = device.name
   %td
     %ul
     - device.cams.each do |cam|
@@ -11,13 +12,17 @@
           反馈地址：#{cam.status_address}
           控制类型：#{cam.control_type}
           控制数值：#{cam.control_value}
-          = link_to '<i class="glyphicon glyphicon-triangle-top"></i>'.html_safe, { action: 'show', method: 'move_higher', cam_id: cam, move_type: 'cam' }, class: 'btn btn-success', disabled: cam.first?
-          = link_to '<i class="glyphicon glyphicon-triangle-bottom"></i>'.html_safe, { action: 'show', method: 'move_lower', cam_id: cam, move_type: 'cam' }, class: 'btn btn-success', disabled: cam.last?
+          = link_to building_floor_area_device_cam_move_higher_path(cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam), method: :put, class: 'btn btn-success' do
+            %i.glyphicon.glyphicon-triangle-top
+          = link_to building_floor_area_device_cam_move_lower_path(cam.device.area.floor.building, cam.device.area.floor, cam.device.area, cam.device, cam), method: :put, class: 'btn btn-success' do
+            %i.glyphicon.glyphicon-triangle-bottom
 
   %td
     .btn-group.pull-left
       = link_to '编辑设备', edit_building_floor_area_device_path(device.area.floor.building, device.area.floor, device.area, device), class: 'btn btn-warning'
       = link_to '删除', [device.area.floor.building, device.area.floor, device.area, device], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-      = link_to '<i class="glyphicon glyphicon-triangle-top"></i>'.html_safe, { action: 'show', method: 'move_higher', device_id: device, move_type: 'device' }, class: 'btn btn-success', disabled: device.first?
-      = link_to '<i class="glyphicon glyphicon-triangle-bottom"></i>'.html_safe, { action: 'show', method: 'move_lower', device_id: device, move_type: 'device' }, class: 'btn btn-success', disabled: device.last?
+      = link_to building_floor_area_device_move_higher_path(device.area.floor.building, device.area.floor, device.area, device), method: :put, class: 'btn btn-success' do
+        %i.glyphicon.glyphicon-triangle-top
+      = link_to building_floor_area_device_move_lower_path(device.area.floor.building, device.area.floor, device.area, device), method: :put, class: 'btn btn-success' do
+        %i.glyphicon.glyphicon-triangle-bottom
       = link_to '复制设备', building_floor_area_device_dup_device_path(device.area.floor.building, device.area.floor, device.area, device), method: :post, device_id: device.id,  class: 'btn btn-default'

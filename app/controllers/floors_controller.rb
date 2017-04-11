@@ -45,8 +45,14 @@ class FloorsController < ApplicationController
     end
   end
 
-  def move_floor_higher
-    Floor.find(params[:id]).move_higher
+  def move_higher
+    Floor.find(params[:floor_id]).move_higher
+    redirect_to :back
+  end
+
+  def move_lower
+    Floor.find(params[:floor_id]).move_lower
+    redirect_to :back
   end
 
   private

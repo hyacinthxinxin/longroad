@@ -59,6 +59,16 @@ class DevicesController < ApplicationController
     end
   end
 
+  def move_higher
+    Device.find_by(id: params[:device_id]).move_higher
+    redirect_to :back
+  end
+
+  def move_lower
+    Device.find_by(id: params[:device_id]).move_lower
+    redirect_to :back
+  end
+
   def dup_device
     device = Device.find_by(id: params[:device_id])
     device_copy = device.amoeba_dup

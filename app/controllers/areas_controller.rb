@@ -18,13 +18,6 @@ class AreasController < ApplicationController
     end
   end
 
-  def dup_area
-    area = Area.find_by(id: params[:area_id])
-    area_copy = area.amoeba_dup
-    area_copy.save
-    redirect_to request.referrer || root_url
-  end
-
   def new
     @building = Building.find(params[:building_id])
     @floor = Floor.find(params[:floor_id])
@@ -65,6 +58,23 @@ class AreasController < ApplicationController
     @area.destroy
     flash[:success] = 'Area deleted'
     redirect_to request.referrer || root_url
+  end
+
+  def move_higher
+    Area.find(params[:area_id]).move_higher
+    redirect_to :back
+  end
+
+  def move_lower
+    Area.find(params[:area_id]).move_lower
+    redirect_to :back
+  end
+
+  def dup_area
+    area = Area.find_by(id: params[:area_id])
+    area_copy = area.amoeba_dup
+    area_copy.save
+    redirect_to :back
   end
 
   private

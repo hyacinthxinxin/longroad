@@ -1,0 +1,16 @@
+%tr
+  %td= image_tag("le_icons/room_icon/#{area.image_name}_room.png", size: "36x36", alt: "Area Image")
+  %td
+    -# = area.name
+    = link_to area.name, building_floor_area_path(area.floor.building, area.floor, area)
+  %td
+    .btn-group.pull-right
+      = link_to '编辑房间', edit_building_floor_area_path(area.floor.building, area.floor, area), class: 'btn btn-warning'
+      = link_to '删除房间', [area.floor.building, area.floor, area], method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'
+      = link_to '复制房间', building_floor_area_dup_area_path(area.floor.building, area.floor, area), method: :post, data: { confirm: 'Are you sure?' },   class: 'btn btn-default'
+  %td
+    .btn-group.pull-right
+      = link_to building_floor_area_move_higher_path(area.floor.building, area.floor, area), method: :put, class: 'btn btn-success', disabled: area.first? do
+        %i.glyphicon.glyphicon-triangle-top
+      = link_to building_floor_area_move_lower_path(area.floor.building, area.floor, area), method: :put, class: 'btn btn-success', disabled: area.last? do
+        %i.glyphicon.glyphicon-triangle-bottom
