@@ -18,5 +18,4 @@
     = f.input :control_value, placeholder: "控制值", label: "值", disabled: f.object.disableControlValueChange
   .col-md-1
     = link_to_remove_association f, class:'btn btn-danger', data: {confirm: "确定删除 #{f.object.name} 控件?"} do
-      %i.fa.fa-trash X
-  %br/
+      %i X
