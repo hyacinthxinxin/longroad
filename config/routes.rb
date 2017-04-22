@@ -2,6 +2,9 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
 
+  devise_for :admins
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users
 
   namespace :api do

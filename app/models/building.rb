@@ -18,4 +18,11 @@ class Building < ApplicationRecord
   amoeba do
     enable
   end
+
+  rails_admin do
+    configure :user do
+      label 'Owner of this building: '
+    end
+  end
+
 end
