@@ -2,7 +2,7 @@
   .col-md-3
     = f.input :name, placeholder: "名称", class: 'form-control'
   .col-md-2
-    = f.input :control_address, placeholder: "控制地址", class: 'form-control'
+    = f.input :control_address, placeholder: "控制地址", class: 'form-control', disabled: f.object.disableControlAddressChange
   .col-md-2
     = f.input :status_address, placeholder: "反馈地址", class: 'form-control', disabled: f.object.disableStatusAddressChange
   .col-md-2

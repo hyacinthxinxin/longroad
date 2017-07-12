@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # This file should contain all the record creation needed to
-# seed the database with its default values.
+#  the database with its default values.
 # The data can then be loaded with the rails db:seed command
 # (or created alongside the database with db:setup).
 #
@@ -18,14 +18,14 @@
 #                admin: false)
 # end
 
-device_categories = [['场景', 0], ['灯光', 2], ['窗帘', 3], ['空调', 4], ['地热', 5], ['新风', 6]]
+device_categories = [['场景', 0] , ['灯光', 2], ['窗帘', 3], ['空调', 4], ['地热', 5], ['新风', 6], ['环境', 7]]
 device_categories.each do |category|
   unless DeviceCategory.find_by(device_type: category[1])
     DeviceCategory.create(name: category[0], device_type: category[1])
   end
 end
 
-CamCategory.all.each(&:destroy)
+# CamCategory.all.each(&:destroy)
 
 cam_categories = [['场景启动', 0, 1], ['灯光开关', 20, 0], ['灯光调光', 21, 1],
                   ['窗帘开', 30, 0], ['窗帘关', 31, 0], ['窗帘升', 32, 0], ['窗帘降', 33, 0], ['窗帘停', 34, 0],
@@ -34,7 +34,8 @@ cam_categories = [['场景启动', 0, 1], ['灯光开关', 20, 0], ['灯光调�
                   ['空调模式制热', 42, 1], ['空调模式制冷', 43, 1], ['空调模式通风', 44, 1], ['空调模式除湿', 45, 1],
                   ['地热开关', 50, 0], ['地热调温', 51, 2],
                   ['新风开关', 60, 0],
-                  ['新风风速低风', 61, 1], ['新风风速中风', 62, 1], ['新风风速高风', 63, 1]]
+                  ['新风风速低风', 61, 1], ['新风风速中风', 62, 1], ['新风风速高风', 63, 1],
+                  ['温度', 90, 2], ['湿度', 91, 2], ['PM2.5', 92, 2]]
 cam_categories.each do |category|
   unless CamCategory.find_by(cam_type: category[1])
     CamCategory.create(name: category[0], cam_type: category[1], control_type: category[2])
@@ -56,6 +57,8 @@ CamCategory.all.order('cam_type ASC').each do |cam_category|
     cam_category.device_category = DeviceCategory.find_by(device_type: 5)
   when 60..69
     cam_category.device_category = DeviceCategory.find_by(device_type: 6)
+  when 90..99
+    cam_category.device_category = DeviceCategory.find_by(device_type: 7)
   end
   cam_category.save
 end

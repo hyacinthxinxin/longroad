@@ -27,12 +27,16 @@ class Cam < ApplicationRecord
     self.max_status_value ||= 0
   end
 
+  def disableControlAddressChange
+    [90, 91, 92].include?(i_type)
+  end
+
   def disableStatusAddressChange
     [0, 30, 31, 32, 33, 34].include?(i_type)
   end
 
   def disableControlValueChange
-    [20, 21, 40, 41, 50, 51, 70].include?(i_type)
+    [20, 21, 40, 41, 50, 51, 70, 90, 91, 92].include?(i_type)
   end
 
 end

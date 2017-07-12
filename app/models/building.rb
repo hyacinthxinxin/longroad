@@ -8,7 +8,8 @@ class Building < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2 }
 
-  validates :socket_address, presence: true, format: { with: Regexp.new(/((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)/) }
+  validates :socket_address, presence: true
+  # , format: { with: Regexp.new(/((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)/) }
 
   before_save :default_values
   def default_values

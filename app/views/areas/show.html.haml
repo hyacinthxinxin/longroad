@@ -19,6 +19,7 @@
       %li= link_to '空调', new_building_floor_area_device_path(@area.floor.building, @area.floor, @area, i_type: 4)
       %li= link_to '地热', new_building_floor_area_device_path(@area.floor.building, @area.floor, @area, i_type: 5)
       %li= link_to '新风', new_building_floor_area_device_path(@area.floor.building, @area.floor, @area, i_type: 6)
+      %li= link_to '环境', new_building_floor_area_device_path(@area.floor.building, @area.floor, @area, i_type: 7)
       -# %li.divider
       -# %li= link_to '自定义', new_building_floor_area_device_path(@area.floor.building, @area.floor, @area, :i_type => 7)
 %div
@@ -51,4 +52,4 @@
       #device-curtain.tab-pane
         = render device_with_type(@area, [3])
       #device-temp.tab-pane
-        = render device_with_type(@area, [4,5,6])
+        = render device_with_type(@area, [4,5,6,7])
