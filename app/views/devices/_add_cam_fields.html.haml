@@ -2,7 +2,4 @@
   - if DeviceCategory.find_by(device_type: @device.i_type)
     添加控件
     - DeviceCategory.find_by(device_type: @device.i_type).cam_categories.each do |category|
-      %li= link_to_add_association category.name, f, :cams, |
-            data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" }, |
-            class: "btn btn-default", |
-            wrap_object: Proc.new { |cam| cam.name = category.name; cam.i_type = category.cam_type; cam.control_type = category.control_type; cam }
+      %li= link_to_add_association category.name, f, :cams, data: {"association-insertion-method" => :append, "association-insertion-node" => "#cams" },class: "btn btn-default", wrap_object: Proc.new { |cam| cam.name = category.name; cam.i_type = category.cam_type; cam.control_type = category.control_type; cam }

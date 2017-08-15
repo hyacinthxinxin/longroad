@@ -13,10 +13,10 @@ class Device < ApplicationRecord
 
   belongs_to :area
   acts_as_list scope: :area
-  has_many :cams, -> { order('position ASC') }, dependent: :destroy, inverse_of: :device
+  has_many :cams, -> {order('position ASC')}, dependent: :destroy, inverse_of: :device
   accepts_nested_attributes_for :cams, allow_destroy: true, reject_if: :all_blank
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :name, presence: true, length: {minimum: 2}
   validates :image_name, presence: true
   validates :i_type, presence: true
 
@@ -35,10 +35,10 @@ class Device < ApplicationRecord
 
   def getCamCatrgoriesByCamType
     case i_type
-    when 0
-      CamCategory.all.where(camType: [0])
-    when 1
-      CamCategory.all.where(camType: [20, 21])
+      when 0
+        CamCategory.all.where(camType: [0])
+      when 1
+        CamCategory.all.where(camType: [20, 21])
     end
   end
 end

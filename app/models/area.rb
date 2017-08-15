@@ -7,8 +7,8 @@ class Area < ApplicationRecord
   belongs_to :floor
   acts_as_list scope: :floor
 
-  has_many :devices, -> { order('position ASC') }, dependent: :destroy
-  validates :name, presence: true, length: { minimum: 2 }
+  has_many :devices, -> {order('position ASC')}, dependent: :destroy
+  validates :name, presence: true, length: {minimum: 2}
   validates :image_name, presence: true
 
   amoeba do
